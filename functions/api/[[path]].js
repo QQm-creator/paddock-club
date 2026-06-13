@@ -1,7 +1,9 @@
 import { CIRCUITS, DRIVERS, TEAMS, findEntity } from '../_shared/data.js';
 
 const TOKEN_TTL_MS = 30 * 24 * 60 * 60 * 1000;
-const PBKDF2_ITERATIONS = 120000;
+// Pages Functions free-tier CPU is intentionally tight. Web Crypto still provides
+// a salted 256-bit password hash while keeping registration within that budget.
+const PBKDF2_ITERATIONS = 10000;
 
 function json(data, status = 200) {
   return Response.json(data, {
