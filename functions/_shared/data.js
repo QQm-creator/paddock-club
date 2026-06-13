@@ -1,0 +1,67 @@
+export const DRIVERS = [
+  { id: 'kimi-antonelli', name: 'Kimi Antonelli', nameCN: '基米·安东内利', team: 'Mercedes', points: 156, position: 1, image: 'antonelli.webp' },
+  { id: 'lewis-hamilton', name: 'Lewis Hamilton', nameCN: '刘易斯·汉密尔顿', team: 'Ferrari', points: 90, position: 2, image: 'hamilton.webp' },
+  { id: 'george-russell', name: 'George Russell', nameCN: '乔治·拉塞尔', team: 'Mercedes', points: 88, position: 3, image: 'russell.webp' },
+  { id: 'charles-leclerc', name: 'Charles Leclerc', nameCN: '夏尔·勒克莱尔', team: 'Ferrari', points: 75, position: 4, image: 'leclerc.webp' },
+  { id: 'oscar-piastri', name: 'Oscar Piastri', nameCN: '奥斯卡·皮亚斯特里', team: 'McLaren', points: 60, position: 5, image: 'piastri.webp' },
+  { id: 'lando-norris', name: 'Lando Norris', nameCN: '兰多·诺里斯', team: 'McLaren', points: 58, position: 6, image: 'norris.webp' },
+  { id: 'max-verstappen', name: 'Max Verstappen', nameCN: '马克斯·维斯塔潘', team: 'Red Bull Racing', points: 43, position: 7, image: 'verstappen.webp' },
+  { id: 'isack-hadjar', name: 'Isack Hadjar', nameCN: '伊萨克·哈贾尔', team: 'Red Bull Racing', points: 29, position: 8, image: 'hadjar.webp' },
+  { id: 'liam-lawson', name: 'Liam Lawson', nameCN: '利亚姆·劳森', team: 'Racing Bulls', points: 26, position: 9, image: 'lawson.webp' },
+  { id: 'pierre-gasly', name: 'Pierre Gasly', nameCN: '皮埃尔·加斯利', team: 'Alpine', points: 26, position: 10, image: 'gasly.webp' },
+  { id: 'oliver-bearman', name: 'Oliver Bearman', nameCN: '奥利弗·贝尔曼', team: 'Haas F1 Team', points: 18, position: 11, image: 'bearman.webp' },
+  { id: 'franco-colapinto', name: 'Franco Colapinto', nameCN: '弗朗哥·科拉平托', team: 'Alpine', points: 15, position: 12, image: 'colapinto.webp' },
+  { id: 'arvid-lindblad', name: 'Arvid Lindblad', nameCN: '阿维德·林德布拉德', team: 'Racing Bulls', points: 13, position: 13, image: 'lindblad.webp' },
+  { id: 'carlos-sainz', name: 'Carlos Sainz', nameCN: '卡洛斯·赛恩斯', team: 'Williams', points: 6, position: 14, image: 'sainz.webp' },
+  { id: 'alexander-albon', name: 'Alexander Albon', nameCN: '亚历山大·阿尔本', team: 'Williams', points: 5, position: 15, image: 'albon.webp' },
+  { id: 'esteban-ocon', name: 'Esteban Ocon', nameCN: '埃斯特班·奥康', team: 'Haas F1 Team', points: 3, position: 16, image: 'ocon.webp' },
+  { id: 'gabriel-bortoleto', name: 'Gabriel Bortoleto', nameCN: '加布里埃尔·博尔托莱托', team: 'Audi', points: 2, position: 17, image: 'bortoleto.webp' },
+  { id: 'fernando-alonso', name: 'Fernando Alonso', nameCN: '费尔南多·阿隆索', team: 'Aston Martin', points: 1, position: 18, image: 'alonso.webp' },
+  { id: 'nico-hulkenberg', name: 'Nico Hulkenberg', nameCN: '尼科·霍肯伯格', team: 'Audi', points: 0, position: 19, image: 'hulkenberg.webp' },
+  { id: 'valtteri-bottas', name: 'Valtteri Bottas', nameCN: '瓦尔特利·博塔斯', team: 'Cadillac', points: 0, position: 20, image: 'bottas.webp' },
+  { id: 'sergio-perez', name: 'Sergio Perez', nameCN: '塞尔吉奥·佩雷兹', team: 'Cadillac', points: 0, position: 21, image: 'perez.webp' },
+  { id: 'lance-stroll', name: 'Lance Stroll', nameCN: '兰斯·斯特罗尔', team: 'Aston Martin', points: 0, position: 22, image: 'stroll.webp' },
+];
+
+export const TEAMS = [
+  { id: 'mercedes', name: 'Mercedes', points: 244, position: 1, drivers: 'Antonelli / Russell', image: 'mercedes.webp' },
+  { id: 'ferrari', name: 'Ferrari', points: 165, position: 2, drivers: 'Hamilton / Leclerc', image: 'ferrari.webp' },
+  { id: 'mclaren', name: 'McLaren', points: 118, position: 3, drivers: 'Piastri / Norris', image: 'mclaren.webp' },
+  { id: 'red-bull', name: 'Red Bull Racing', points: 72, position: 4, drivers: 'Verstappen / Hadjar', image: 'red-bull.webp' },
+  { id: 'alpine', name: 'Alpine', points: 41, position: 5, drivers: 'Gasly / Colapinto', image: 'alpine.webp' },
+  { id: 'racing-bulls', name: 'Racing Bulls', points: 39, position: 6, drivers: 'Lawson / Lindblad', image: 'racing-bulls.webp' },
+  { id: 'haas', name: 'Haas F1 Team', points: 21, position: 7, drivers: 'Bearman / Ocon', image: 'haas.webp' },
+  { id: 'williams', name: 'Williams', points: 11, position: 8, drivers: 'Sainz / Albon', image: 'williams.webp' },
+  { id: 'audi', name: 'Audi', points: 2, position: 9, drivers: 'Bortoleto / Hulkenberg', image: 'audi.webp' },
+  { id: 'aston-martin', name: 'Aston Martin', points: 1, position: 10, drivers: 'Alonso / Stroll', image: 'aston-martin.webp' },
+  { id: 'cadillac', name: 'Cadillac', points: 0, position: 11, drivers: 'Bottas / Perez', image: 'cadillac.webp' },
+];
+
+export const CIRCUITS = [
+  ['australia', 1, 'Australian Grand Prix', '澳大利亚大奖赛', 'Melbourne', '2026-03-08', 'M18 72 C28 68 26 48 42 43 L64 39 C78 36 88 23 105 25 C125 28 142 42 139 58 C136 72 119 82 103 78 L82 69 L62 75 L42 69 Z'],
+  ['china', 2, 'Chinese Grand Prix', '中国大奖赛', 'Shanghai', '2026-03-15', 'M29 67 C17 54 20 30 39 22 C55 15 74 21 75 35 C76 48 60 53 52 45 C47 40 51 31 60 31 L96 31 C111 31 128 42 137 56 L122 74 L95 68 L78 81 L54 72 Z'],
+  ['japan', 3, 'Japanese Grand Prix', '日本大奖赛', 'Suzuka', '2026-03-29', 'M20 62 L41 43 L63 54 L84 31 L108 23 L139 31 L129 48 L103 51 L88 72 L64 78 L47 67 L32 80 Z M58 54 L77 65'],
+  ['miami', 4, 'Miami Grand Prix', '迈阿密大奖赛', 'Miami', '2026-05-03', 'M18 61 L42 61 L54 38 L79 33 L96 17 L137 23 L128 42 L105 42 L95 58 L119 72 L103 83 L76 69 L58 80 L34 74 Z'],
+  ['canada', 5, 'Canadian Grand Prix', '加拿大大奖赛', 'Montreal', '2026-05-24', 'M22 70 L31 30 L47 22 L59 38 L85 35 L101 20 L137 25 L128 42 L102 48 L116 64 L99 81 L75 68 L54 76 L39 61 Z'],
+  ['monaco', 6, 'Monaco Grand Prix', '摩纳哥大奖赛', 'Monte Carlo', '2026-06-07', 'M25 74 L35 54 L28 38 L43 22 L65 31 L82 21 L105 30 L112 46 L137 53 L123 72 L96 68 L83 82 L59 70 L42 80 Z'],
+  ['barcelona', 7, 'Barcelona-Catalunya Grand Prix', '巴塞罗那-加泰罗尼亚大奖赛', 'Barcelona', '2026-06-14', 'M21 67 L26 38 L45 24 L73 23 L88 35 L112 28 L139 39 L129 58 L107 55 L96 75 L74 82 L53 68 L35 78 Z'],
+  ['austria', 8, 'Austrian Grand Prix', '奥地利大奖赛', 'Spielberg', '2026-06-28', 'M24 71 L38 42 L72 22 L120 25 L139 42 L123 62 L91 56 L70 79 L42 80 Z'],
+  ['great-britain', 9, 'British Grand Prix', '英国大奖赛', 'Silverstone', '2026-07-05', 'M18 59 L34 41 L28 26 L49 22 L67 38 L81 23 L103 35 L126 29 L141 48 L127 66 L105 61 L91 79 L67 69 L43 80 L31 65 Z'],
+  ['belgium', 10, 'Belgian Grand Prix', '比利时大奖赛', 'Spa-Francorchamps', '2026-07-19', 'M20 67 L31 38 L52 23 L75 29 L92 17 L126 23 L139 42 L126 62 L104 58 L90 80 L62 74 L43 82 Z'],
+  ['hungary', 11, 'Hungarian Grand Prix', '匈牙利大奖赛', 'Budapest', '2026-07-26', 'M23 68 C17 48 30 26 51 23 L76 28 L96 20 L125 31 L139 50 L126 70 L103 65 L85 80 L61 72 L43 81 Z'],
+  ['netherlands', 12, 'Dutch Grand Prix', '荷兰大奖赛', 'Zandvoort', '2026-08-23', 'M27 75 C17 59 21 34 39 23 C55 14 73 22 77 39 C82 57 64 66 51 56 C43 49 46 37 57 34 L94 25 L132 34 L140 55 L124 72 L96 67 L76 82 L49 74 Z'],
+  ['italy', 13, 'Italian Grand Prix', '意大利大奖赛', 'Monza', '2026-09-06', 'M23 72 L30 30 L47 18 L64 29 L61 55 L82 64 L103 27 L132 25 L140 45 L126 64 L101 59 L85 81 L56 72 L39 82 Z'],
+  ['madrid', 14, 'Spanish Grand Prix', '西班牙大奖赛', 'Madrid', '2026-09-13', 'M19 65 L34 40 L29 24 L52 18 L71 32 L91 23 L119 30 L141 50 L127 70 L105 64 L91 81 L67 72 L45 81 L31 67 Z'],
+  ['azerbaijan', 15, 'Azerbaijan Grand Prix', '阿塞拜疆大奖赛', 'Baku', '2026-09-26', 'M20 74 L26 26 L48 20 L55 48 L74 51 L83 29 L105 25 L113 50 L139 55 L128 76 L96 70 L78 82 L52 73 Z'],
+  ['singapore', 16, 'Singapore Grand Prix', '新加坡大奖赛', 'Singapore', '2026-10-11', 'M18 70 L27 34 L44 22 L59 39 L76 20 L93 38 L112 25 L140 42 L132 66 L111 62 L98 80 L76 69 L57 82 L39 64 Z'],
+  ['united-states', 17, 'United States Grand Prix', '美国大奖赛', 'Austin', '2026-10-25', 'M20 69 L29 34 L48 18 L67 34 L87 22 L112 31 L139 51 L124 70 L101 62 L86 81 L62 71 L43 82 Z'],
+  ['mexico', 18, 'Mexico City Grand Prix', '墨西哥城大奖赛', 'Mexico City', '2026-11-01', 'M19 67 L27 27 L50 20 L59 43 L78 38 L94 19 L126 24 L140 43 L127 62 L106 56 L94 79 L67 73 L46 82 L34 62 Z'],
+  ['brazil', 19, 'São Paulo Grand Prix', '圣保罗大奖赛', 'São Paulo', '2026-11-08', 'M24 70 C17 54 21 31 39 22 C56 14 73 24 78 41 L89 61 L113 56 L138 67 L126 82 L99 76 L77 83 L56 69 L40 79 Z'],
+  ['las-vegas', 20, 'Las Vegas Grand Prix', '拉斯维加斯大奖赛', 'Las Vegas', '2026-11-21', 'M19 72 L27 25 L42 18 L49 65 L72 69 L84 21 L105 20 L112 62 L140 67 L130 81 L96 75 L69 82 L43 76 Z'],
+  ['qatar', 21, 'Qatar Grand Prix', '卡塔尔大奖赛', 'Lusail', '2026-11-29', 'M23 70 C16 49 26 26 48 19 L75 22 L92 17 L122 27 L140 47 L130 69 L107 64 L91 81 L65 72 L43 82 Z'],
+  ['abu-dhabi', 22, 'Abu Dhabi Grand Prix', '阿布扎比大奖赛', 'Yas Marina', '2026-12-06', 'M20 69 L27 34 L45 21 L61 38 L82 22 L102 34 L129 27 L141 48 L128 68 L106 61 L91 81 L67 71 L45 82 L34 64 Z'],
+].map(([id, round, name, nameCN, city, date, path]) => ({ id, round, name, nameCN, city, date, path }));
+
+export function findEntity(id) {
+  return DRIVERS.find(item => item.id === id) || TEAMS.find(item => item.id === id);
+}

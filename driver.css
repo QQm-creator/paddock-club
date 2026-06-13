@@ -1,0 +1,572 @@
+/* ── Driver Detail Page ── */
+
+.driver-page {
+  min-height: 100dvh;
+  padding: 120px clamp(20px, 5vw, 76px) clamp(80px, 10vw, 140px);
+  background:
+    linear-gradient(180deg, #060607 0%, #0a0a0c 50%, #050506 100%);
+}
+
+/* ── Hero ── */
+
+.driver-hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  gap: clamp(32px, 6vw, 72px);
+  width: min(900px, 100%);
+  margin: 0 auto clamp(60px, 7vw, 100px);
+  overflow: hidden;
+}
+
+/* ── Danmaku over driver hero ── */
+
+.driver-hero__danmaku {
+  position: absolute;
+  inset: -40px -20px;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.driver-hero__avatar {
+  flex-shrink: 0;
+  width: clamp(160px, 22vw, 260px);
+  height: clamp(160px, 22vw, 260px);
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.driver-hero__avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.driver-hero__info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+.driver-hero__team {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.driver-hero__info h1 {
+  margin: 0;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.driver-hero__meta {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 4px;
+}
+
+.driver-hero__position {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  font-size: 0.72rem;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.driver-hero__points {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.driver-hero__rating {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+.driver-hero__stars {
+  color: #f0a028;
+  font-size: 1.2rem;
+  letter-spacing: 0.04em;
+}
+
+.driver-hero__rating-text {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.driver-hero__user-stars {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.driver-hero__stars-label {
+  font-size: 0.64rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.driver-hero__user-stars[hidden] {
+  display: none;
+}
+
+#driver-interactive-stars {
+  display: inline-flex;
+  gap: 3px;
+}
+
+#driver-interactive-stars .ranking-row__star {
+  font-size: 1rem;
+}
+
+/* ── Circuit performance ratings ── */
+
+.circuit-ratings {
+  width: min(1280px, 100%);
+  margin: 0 auto clamp(84px, 9vw, 132px);
+  padding-top: clamp(56px, 7vw, 92px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.circuit-ratings__header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: clamp(32px, 6vw, 90px);
+  align-items: end;
+  margin-bottom: 28px;
+}
+
+.circuit-ratings__eyebrow {
+  margin: 0 0 12px;
+  color: #e13a3f;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.circuit-ratings h2 {
+  margin: 0;
+  color: #f5f5f3;
+  font-size: clamp(2.5rem, 5vw, 5.6rem);
+  font-weight: 900;
+  line-height: 0.88;
+  letter-spacing: 0;
+}
+
+.circuit-ratings__intro {
+  max-width: 38rem;
+  margin: 20px 0 0;
+  color: rgba(255, 255, 255, 0.48);
+  font-size: 0.88rem;
+  line-height: 1.75;
+}
+
+.season-score {
+  min-width: 230px;
+  padding-left: 28px;
+  border-left: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.season-score__number {
+  display: flex;
+  align-items: flex-end;
+  gap: 7px;
+  color: rgba(255, 255, 255, 0.36);
+}
+
+.season-score__number strong {
+  color: #f5f5f3;
+  font-size: clamp(3.5rem, 6vw, 6.5rem);
+  font-weight: 900;
+  line-height: 0.75;
+  font-variant-numeric: tabular-nums;
+}
+
+.season-score__number span {
+  padding-bottom: 5px;
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.season-score__stars {
+  margin-top: 18px;
+  color: #e6ad43;
+  font-size: 1.25rem;
+  letter-spacing: 0.08em;
+}
+
+.season-score p {
+  margin: 8px 0 0;
+  color: rgba(255, 255, 255, 0.38);
+  font-size: 0.67rem;
+  font-weight: 700;
+}
+
+.circuit-ratings__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 28px;
+  padding: 16px 0 28px;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.65rem;
+  font-weight: 700;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.circuit-ratings__legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.circuit-ratings__status-dot {
+  width: 7px;
+  height: 7px;
+  background: #e13a3f;
+}
+
+.circuit-ratings__status-dot.is-locked {
+  background: #4c4c52;
+}
+
+.circuit-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+}
+
+.circuit-card {
+  --circuit-accent: #e13a3f;
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 132px auto;
+  min-width: 0;
+  min-height: 370px;
+  padding: 22px;
+  background: #0b0b0d;
+  transition: background-color 180ms ease;
+}
+
+.circuit-card:hover {
+  background: #0f0f12;
+}
+
+.circuit-card.is-locked {
+  --circuit-accent: #55555c;
+}
+
+.circuit-card__header {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: start;
+}
+
+.circuit-card__round {
+  color: var(--circuit-accent);
+  font-size: 0.66rem;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+}
+
+.circuit-card__name {
+  min-width: 0;
+}
+
+.circuit-card__name strong {
+  display: block;
+  overflow: hidden;
+  color: #f1f1ef;
+  font-size: 0.9rem;
+  font-weight: 800;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.circuit-card__name span,
+.circuit-card__status {
+  color: rgba(255, 255, 255, 0.36);
+  font-size: 0.59rem;
+  font-weight: 700;
+}
+
+.circuit-card__status {
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.circuit-card__map {
+  display: grid;
+  place-items: center;
+  min-height: 0;
+}
+
+.circuit-card__map svg {
+  width: min(100%, 205px);
+  height: 112px;
+  overflow: visible;
+}
+
+.circuit-card__map path {
+  fill: none;
+  stroke: var(--circuit-accent);
+  stroke-width: 3.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  filter: drop-shadow(0 0 7px color-mix(in srgb, var(--circuit-accent) 28%, transparent));
+}
+
+.circuit-card.is-locked .circuit-card__map {
+  opacity: 0.46;
+}
+
+.circuit-card__controls {
+  display: grid;
+  gap: 14px;
+  align-content: end;
+}
+
+.circuit-card__aggregate {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 10px;
+  align-items: center;
+  min-height: 28px;
+  color: rgba(255, 255, 255, 0.38);
+  font-size: 0.62rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.circuit-card__aggregate strong {
+  color: #f1f1ef;
+  font-size: 1.2rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.circuit-card__aggregate-stars {
+  color: #e6ad43;
+  letter-spacing: 0.04em;
+}
+
+.circuit-card__score {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) 40px;
+  gap: 10px;
+  align-items: center;
+}
+
+.circuit-card__label {
+  color: rgba(255, 255, 255, 0.46);
+  font-size: 0.61rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.circuit-card__slider {
+  width: 100%;
+  height: 3px;
+  cursor: pointer;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 0;
+  accent-color: var(--circuit-accent);
+}
+
+.circuit-card__slider::-webkit-slider-thumb {
+  width: 15px;
+  height: 15px;
+  cursor: grab;
+  appearance: none;
+  background: var(--circuit-accent);
+  border: 3px solid #0b0b0d;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px var(--circuit-accent);
+}
+
+.circuit-card__score-output {
+  color: #f5f5f3;
+  font-size: 0.8rem;
+  font-weight: 900;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.circuit-card__rating-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.circuit-card__stars {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.circuit-card__star {
+  width: 25px;
+  height: 28px;
+  padding: 0;
+  color: #56565d;
+  font: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  transition: color 140ms ease, transform 140ms ease;
+}
+
+.circuit-card__star:hover,
+.circuit-card__star:focus-visible,
+.circuit-card__star.is-lit {
+  color: #e6ad43;
+}
+
+.circuit-card__star:hover {
+  transform: translateY(-2px);
+}
+
+.circuit-card__star:focus-visible,
+.circuit-card__submit:focus-visible {
+  outline: 2px solid #e13a3f;
+  outline-offset: 2px;
+}
+
+.circuit-card__submit {
+  min-height: 34px;
+  padding: 0 13px;
+  color: #0a0a0b;
+  font: inherit;
+  font-size: 0.62rem;
+  font-weight: 900;
+  cursor: pointer;
+  background: #f1f1ef;
+  border: 0;
+  border-radius: 3px;
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.circuit-card__submit:hover {
+  background: #e13a3f;
+  transform: translateY(-1px);
+}
+
+.circuit-card__submit:disabled,
+.circuit-card__slider:disabled,
+.circuit-card__star:disabled {
+  cursor: not-allowed;
+}
+
+.circuit-card__submit:disabled {
+  color: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.circuit-card__slider:disabled,
+.circuit-card__star:disabled {
+  opacity: 0.45;
+}
+
+.circuit-card__message {
+  min-height: 13px;
+  margin: -6px 0 0;
+  color: rgba(255, 255, 255, 0.42);
+  font-size: 0.58rem;
+}
+
+.circuit-card__message.is-success {
+  color: #64c5a5;
+}
+
+.circuit-card__message.is-error {
+  color: #ef6268;
+}
+
+/* ── Responsive ── */
+
+@media (max-width: 640px) {
+  .driver-hero {
+    flex-direction: column;
+    text-align: center;
+    gap: 24px;
+  }
+
+  .driver-hero__meta,
+  .driver-hero__rating,
+  .driver-hero__user-stars {
+    justify-content: center;
+  }
+
+  .driver-hero__info h1 {
+    font-size: clamp(1.8rem, 8vw, 2.6rem);
+  }
+
+  .driver-hero__avatar {
+    width: clamp(130px, 40vw, 180px);
+    height: clamp(130px, 40vw, 180px);
+  }
+}
+
+@media (max-width: 980px) {
+  .circuit-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .driver-page {
+    padding-inline: 16px;
+  }
+
+  .circuit-ratings__header {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .season-score {
+    min-width: 0;
+    padding: 22px 0 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    border-left: 0;
+  }
+
+  .circuit-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .circuit-card {
+    grid-template-rows: auto 126px auto;
+    min-height: 354px;
+    padding: 20px 18px;
+  }
+}

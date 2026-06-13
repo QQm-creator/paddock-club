@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>排行榜 — Paddock Club</title>
+    <meta name="description" content="查看 Paddock Club 社区车手排名、评分以及 2026 F1 官方车手和车队积分榜。" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./vehicle-detail.css" />
+  </head>
+  <body>
+    <nav class="detail__nav">
+      <a class="detail__back" href="./index.html">← 返回首页 Back to Paddock Club</a>
+      <span class="detail__season">Season 2026</span>
+    </nav>
+
+    <section class="podium" id="rankings" aria-labelledby="podium-title">
+      <div class="podium__danmaku" id="podium-danmaku" aria-hidden="true"></div>
+      <header class="podium__header">
+        <p class="podium__eyebrow">Community Leaderboard · 社区排行榜</p>
+        <h2 id="podium-title">社区排行榜</h2>
+        <p class="podium__intro">汽油决定排名 · Fuel decides the ranking. 为你支持的车手加油，推他登顶。</p>
+      </header>
+      <div class="podium__stage">
+        <div class="podium__spot podium__spot--2">
+          <div class="podium__avatar">
+            <span class="podium__placeholder">?</span>
+          </div>
+          <div class="podium__step podium__step--2">
+            <span class="podium__rank">2</span>
+          </div>
+          <div class="podium__info">
+            <span class="podium__name">虚位以待</span>
+            <span class="podium__fuel">0<span class="podium__fuel-unit"> 汽油</span></span>
+          </div>
+        </div>
+
+        <div class="podium__spot podium__spot--1">
+          <div class="podium__avatar podium__avatar--gold">
+            <span class="podium__placeholder">?</span>
+          </div>
+          <div class="podium__step podium__step--1">
+            <span class="podium__rank">1</span>
+          </div>
+          <div class="podium__info">
+            <span class="podium__name">虚位以待</span>
+            <span class="podium__fuel">0<span class="podium__fuel-unit"> 汽油</span></span>
+          </div>
+        </div>
+
+        <div class="podium__spot podium__spot--3">
+          <div class="podium__avatar">
+            <span class="podium__placeholder">?</span>
+          </div>
+          <div class="podium__step podium__step--3">
+            <span class="podium__rank">3</span>
+          </div>
+          <div class="podium__info">
+            <span class="podium__name">虚位以待</span>
+            <span class="podium__fuel">0<span class="podium__fuel-unit"> 汽油</span></span>
+          </div>
+        </div>
+
+        <div class="podium__spot podium__spot--4">
+          <div class="podium__avatar">
+            <span class="podium__placeholder">?</span>
+          </div>
+          <div class="podium__step podium__step--4">
+            <span class="podium__rank">4</span>
+          </div>
+          <div class="podium__info">
+            <span class="podium__name">虚位以待</span>
+            <span class="podium__fuel">0<span class="podium__fuel-unit"> 汽油</span></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="standings" id="standings" aria-labelledby="standings-title">
+      <header class="standings__header">
+        <div>
+          <p class="standings__eyebrow">摩纳哥站后 · After Monaco · 07 Jun 2026</p>
+          <h2 id="standings-title">官方积分榜<br />Official standings.</h2>
+        </div>
+        <div class="standings__controls" role="tablist" aria-label="积分榜类型">
+          <button
+            class="standings__tab is-active"
+            id="drivers-tab"
+            type="button"
+            role="tab"
+            aria-selected="true"
+            aria-controls="drivers-standings"
+            data-standings-tab="drivers"
+          >
+            Drivers · 车手
+          </button>
+          <button
+            class="standings__tab"
+            id="teams-tab"
+            type="button"
+            role="tab"
+            aria-selected="false"
+            aria-controls="teams-standings"
+            data-standings-tab="teams"
+          >
+            Constructors · 车队
+          </button>
+        </div>
+      </header>
+
+      <div class="standings__panel is-active" id="drivers-standings" role="tabpanel" aria-labelledby="drivers-tab">
+        <div class="standings__columns" aria-hidden="true">
+          <span>Pos · 排名</span><span>Driver / Team · 车手 / 车队</span><span>Points · 积分</span>
+        </div>
+        <ol class="ranking-list ranking-list--drivers">
+          <li data-driver-slug="kimi-antonelli" class="ranking-row team-mercedes"><span class="ranking-row__position">01</span><span class="ranking-row__badge ranking-row__badge--driver"><img src="./assets/standings/drivers/antonelli.webp" alt="Kimi Antonelli" /></span><span class="ranking-row__identity"><strong>基米·安东内利 · Kimi Antonelli</strong><small>Mercedes</small></span><span class="ranking-row__points">156</span></li>
+          <li data-driver-slug="lewis-hamilton" class="ranking-row team-ferrari"><span class="ranking-row__position">02</span><span class="ranking-row__badge ranking-row__badge--driver"><img src="./assets/standings/drivers/hamilton.webp" alt="Lewis Hamilton" /></span><span class="ranking-row__identity"><strong>刘易斯·汉密尔顿 · Lewis Hamilton</strong><small>Ferrari</small></span><span class="ranking-row__points">90</span></li>
+          <li data-driver-slug="george-russell" class="ranking-row team-mercedes"><span class="ranking-row__position">03</span><span class="ranking-row__badge ranking-row__badge--driver"><img src="./assets/standings/drivers/russell.webp" alt="George Russell" /></span><span class="ranking-row__identity"><strong>乔治·拉塞尔 · George Russell</strong><small>Mercedes</small></span><span class="ranking-row__points">88</span></li>
+          <li data-driver-slug="charles-leclerc" class="ranking-row team-ferrari"><span class="ranking-row__position">04</span><span class="ranking-row__badge ranking-row__badge--driver"><img src="./assets/standings/drivers/leclerc.webp" alt="Charles Leclerc" /></span><span class="ranking-row__identity"><strong>夏尔·勒克莱尔 · Charles Leclerc</strong><small>Ferrari</small></span><span class="ranking-row__points">75</span></li>
+          <li data-driver-slug="oscar-piastri" class="ranking-row team-mclaren"><span class="ranking-row__position">05</span><span class="ranking-row__badge ranking-row__badge--driver"><img src="./assets/standings/drivers/piastri.webp" alt="Oscar Piastri" /></span><span class="ranking-row__identity"><strong>奥斯卡·皮亚斯特里 · Oscar Piastri</strong><small>McLaren</small></span><span class="ranking-row__points">60</span></li>
+          <li data-driver-slug="lando-norris" class="ranking-row team-mclaren"><span class="ranking-row__position">06</span><span class="ranking-row__badge ranking-row__badge--driver"><img src="./assets/standings/drivers/norris.webp" alt="Lando Norris" /></span><span class="ranking-row__identity"><strong>兰多·诺里斯 · Lando Norris</strong><small>McLaren</small></span><span class="ranking-row__points">58</span></li>
+          <li data-driver-slug="max-verstappen" class="ranking-row team-redbull"><span class="ranking-row__position">07</span><span class="ranking-row__badge ranking-row__badge--driver"><img src="./assets/standings/drivers/verstappen.webp" alt="Max Verstappen" /></span><span class="ranking-row__identity"><strong>马克斯·维斯塔潘 · Max Verstappen</strong><small>Red Bull Racing</small></span><span class="ranking-row__points">43</span></li>
+          <li data-driver-slug="isack-hadjar" class="ranking-row team-redbull"><span class="ranking-row__position">08</span><span class="ranking-row__badge ranking-row__badge--driver"><img src="./assets/standings/drivers/hadjar.webp" alt="Isack Hadjar" /></span><span class="ranking-row__identity"><strong>伊萨克·哈贾尔 · Isack Hadjar</strong><small>Red Bull Racing</small></span><span class="ranking-row__points">29</span></li>
+          <li data-driver-slug="liam-lawson" class="ranking-row team-racing-bulls"><span class="ranking-row__position">09</span><span class="ranking-row__badge ranking-row__badge--driver"><img src="./assets/standings/drivers/lawson.webp" alt="Liam Lawson" /></span><span class="ranking-row__identity"><strong>利亚姆·劳森 · Liam Lawson</strong><small>Racing Bulls</small></span><span class="ranking-row__points">26</span></li>
+          <li data-driver-slug="pierre-gasly" class="ranking-row team-alpine"><span class="ranking-row__position">10</span><span class="ranking-row__badge ranking-row__badge--driver"><img src="./assets/standings/drivers/gasly.webp" alt="Pierre Gasly" /></span><span class="ranking-row__identity"><strong>皮埃尔·加斯利 · Pierre Gasly</strong><small>Alpine</small></span><span class="ranking-row__points">26</span></li>
+          <li data-driver-slug="oliver-bearman" class="ranking-row team-haas"><span class="ranking-row__position">11</span><span class="ranking-row__badge ranking-row__badge--driver"><img src="./assets/standings/drivers/bearman.webp" alt="Oliver Bearman" /></span><span class="ranking-row__identity"><strong>奥利弗·贝尔曼 · Oliver Bearman</strong><small>Haas F1 Team</small></span><span class="ranking-row__points">18</span></li>
+          <li data-driver-slug="franco-colapinto" class="ranking-row team-alpine"><span class="ranking-row__position">12</span><span class="ranking-row__badge ranking-row__badge--driver"><img src="./assets/standings/drivers/colapinto.webp" alt="Franco Colapinto" /></span><span class="ranking-row__identity"><strong>弗朗哥·科拉平托 · Franco Colapinto</strong><small>Alpine</small></span><span class="ranking-row__points">15</span></li>
+          <li data-driver-slug="arvid-lindblad" class="ranking-row team-racing-bulls"><span class="ranking-row__position">13</span><span class="ranking-row__badge ranking-row__badge--driver"><img src="./assets/standings/drivers/lindblad.webp" alt="Arvid Lindblad" /></span><span class="ranking-row__identity"><strong>阿维德·林德布拉德 · Arvid Lindblad</strong><small>Racing Bulls</small></span><span class="ranking-row__points">13</span></li>
+          <li data-driver-slug="carlos-sainz" class="ranking-row team-williams"><span class="ranking-row__position">14</span><span class="ranking-row__badge ranking-row__badge--driver"><img src="./assets/standings/drivers/sainz.webp" alt="Carlos Sainz" /></span><span class="ranking-row__identity"><strong>卡洛斯·赛恩斯 · Carlos Sainz</strong><small>Williams</small></span><span class="ranking-row__points">6</span></li>
+          <li data-driver-slug="alexander-albon" class="ranking-row team-williams"><span class="ranking-row__position">15</span><span class="ranking-row__badge ranking-row__badge--driver"><img src="./assets/standings/drivers/albon.webp" alt="Alexander Albon" /></span><span class="ranking-row__identity"><strong>亚历山大·阿尔本 · Alexander Albon</strong><small>Williams</small></span><span class="ranking-row__points">5</span></li>
+          <li data-driver-slug="esteban-ocon" class="ranking-row team-haas"><span class="ranking-row__position">16</span><span class="ranking-row__badge ranking-row__badge--driver"><img src="./assets/standings/drivers/ocon.webp" alt="Esteban Ocon" /></span><span class="ranking-row__identity"><strong>埃斯特班·奥康 · Esteban Ocon</strong><small>Haas F1 Team</small></span><span class="ranking-row__points">3</span></li>
+          <li data-driver-slug="gabriel-bortoleto" class="ranking-row team-audi"><span class="ranking-row__position">17</span><span class="ranking-row__badge ranking-row__badge--driver"><img src="./assets/standings/drivers/bortoleto.webp" alt="Gabriel Bortoleto" /></span><span class="ranking-row__identity"><strong>加布里埃尔·博尔托莱托 · Gabriel Bortoleto</strong><small>Audi</small></span><span class="ranking-row__points">2</span></li>
+          <li data-driver-slug="fernando-alonso" class="ranking-row team-aston"><span class="ranking-row__position">18</span><span class="ranking-row__badge ranking-row__badge--driver"><img src="./assets/standings/drivers/alonso.webp" alt="Fernando Alonso" /></span><span class="ranking-row__identity"><strong>费尔南多·阿隆索 · Fernando Alonso</strong><small>Aston Martin</small></span><span class="ranking-row__points">1</span></li>
+          <li data-driver-slug="nico-hulkenberg" class="ranking-row team-audi"><span class="ranking-row__position">19</span><span class="ranking-row__badge ranking-row__badge--driver"><img src="./assets/standings/drivers/hulkenberg.webp" alt="Nico Hulkenberg" /></span><span class="ranking-row__identity"><strong>尼科·霍肯伯格 · Nico Hulkenberg</strong><small>Audi</small></span><span class="ranking-row__points">0</span></li>
+          <li data-driver-slug="valtteri-bottas" class="ranking-row team-cadillac"><span class="ranking-row__position">20</span><span class="ranking-row__badge ranking-row__badge--driver"><img src="./assets/standings/drivers/bottas.webp" alt="Valtteri Bottas" /></span><span class="ranking-row__identity"><strong>瓦尔特利·博塔斯 · Valtteri Bottas</strong><small>Cadillac</small></span><span class="ranking-row__points">0</span></li>
+          <li data-driver-slug="sergio-perez" class="ranking-row team-cadillac"><span class="ranking-row__position">21</span><span class="ranking-row__badge ranking-row__badge--driver"><img src="./assets/standings/drivers/perez.webp" alt="Sergio Perez" /></span><span class="ranking-row__identity"><strong>塞尔吉奥·佩雷兹 · Sergio Perez</strong><small>Cadillac</small></span><span class="ranking-row__points">0</span></li>
+          <li data-driver-slug="lance-stroll" class="ranking-row team-aston"><span class="ranking-row__position">22</span><span class="ranking-row__badge ranking-row__badge--driver"><img src="./assets/standings/drivers/stroll.webp" alt="Lance Stroll" /></span><span class="ranking-row__identity"><strong>兰斯·斯特罗尔 · Lance Stroll</strong><small>Aston Martin</small></span><span class="ranking-row__points">0</span></li>
+        </ol>
+      </div>
+
+      <div class="standings__panel" id="teams-standings" role="tabpanel" aria-labelledby="teams-tab" hidden>
+        <div class="standings__columns" aria-hidden="true">
+          <span>Pos · 排名</span><span>Constructor · 制造商</span><span>Points · 积分</span>
+        </div>
+        <ol class="ranking-list ranking-list--teams">
+          <li data-team-slug="mercedes" class="ranking-row team-mercedes"><span class="ranking-row__position">01</span><span class="ranking-row__badge ranking-row__badge--team"><img src="./assets/standings/teams/mercedes.webp" alt="Mercedes" /></span><span class="ranking-row__identity"><strong>Mercedes</strong><small>Antonelli / Russell</small></span><span class="ranking-row__points">244</span></li>
+          <li data-team-slug="ferrari" class="ranking-row team-ferrari"><span class="ranking-row__position">02</span><span class="ranking-row__badge ranking-row__badge--team"><img src="./assets/standings/teams/ferrari.webp" alt="Ferrari" /></span><span class="ranking-row__identity"><strong>Ferrari</strong><small>Hamilton / Leclerc</small></span><span class="ranking-row__points">165</span></li>
+          <li data-team-slug="mclaren" class="ranking-row team-mclaren"><span class="ranking-row__position">03</span><span class="ranking-row__badge ranking-row__badge--team"><img src="./assets/standings/teams/mclaren.webp" alt="McLaren" /></span><span class="ranking-row__identity"><strong>McLaren</strong><small>Piastri / Norris</small></span><span class="ranking-row__points">118</span></li>
+          <li data-team-slug="red-bull" class="ranking-row team-redbull"><span class="ranking-row__position">04</span><span class="ranking-row__badge ranking-row__badge--team"><img src="./assets/standings/teams/red-bull.webp" alt="Red Bull Racing" /></span><span class="ranking-row__identity"><strong>Red Bull Racing</strong><small>Verstappen / Hadjar</small></span><span class="ranking-row__points">72</span></li>
+          <li data-team-slug="alpine" class="ranking-row team-alpine"><span class="ranking-row__position">05</span><span class="ranking-row__badge ranking-row__badge--team"><img src="./assets/standings/teams/alpine.webp" alt="Alpine" /></span><span class="ranking-row__identity"><strong>Alpine</strong><small>Gasly / Colapinto</small></span><span class="ranking-row__points">41</span></li>
+          <li data-team-slug="racing-bulls" class="ranking-row team-racing-bulls"><span class="ranking-row__position">06</span><span class="ranking-row__badge ranking-row__badge--team"><img src="./assets/standings/teams/racing-bulls.webp" alt="Racing Bulls" /></span><span class="ranking-row__identity"><strong>Racing Bulls</strong><small>Lawson / Lindblad</small></span><span class="ranking-row__points">39</span></li>
+          <li data-team-slug="haas" class="ranking-row team-haas"><span class="ranking-row__position">07</span><span class="ranking-row__badge ranking-row__badge--team"><img src="./assets/standings/teams/haas.webp" alt="Haas F1 Team" /></span><span class="ranking-row__identity"><strong>Haas F1 Team</strong><small>Bearman / Ocon</small></span><span class="ranking-row__points">21</span></li>
+          <li data-team-slug="williams" class="ranking-row team-williams"><span class="ranking-row__position">08</span><span class="ranking-row__badge ranking-row__badge--team"><img src="./assets/standings/teams/williams.webp" alt="Williams" /></span><span class="ranking-row__identity"><strong>Williams</strong><small>Sainz / Albon</small></span><span class="ranking-row__points">11</span></li>
+          <li data-team-slug="audi" class="ranking-row team-audi"><span class="ranking-row__position">09</span><span class="ranking-row__badge ranking-row__badge--team"><img src="./assets/standings/teams/audi.webp" alt="Audi" /></span><span class="ranking-row__identity"><strong>Audi</strong><small>Bortoleto / Hulkenberg</small></span><span class="ranking-row__points">2</span></li>
+          <li data-team-slug="aston-martin" class="ranking-row team-aston"><span class="ranking-row__position">10</span><span class="ranking-row__badge ranking-row__badge--team"><img src="./assets/standings/teams/aston-martin.webp" alt="Aston Martin" /></span><span class="ranking-row__identity"><strong>Aston Martin</strong><small>Alonso / Stroll</small></span><span class="ranking-row__points">1</span></li>
+          <li data-team-slug="cadillac" class="ranking-row team-cadillac"><span class="ranking-row__position">11</span><span class="ranking-row__badge ranking-row__badge--team"><img src="./assets/standings/teams/cadillac.webp" alt="Cadillac" /></span><span class="ranking-row__identity"><strong>Cadillac</strong><small>Bottas / Perez</small></span><span class="ranking-row__points">0</span></li>
+        </ol>
+      </div>
+
+      <footer class="standings__source">
+        <span>2026摩纳哥大奖赛赛后官方积分榜 · Official standings after the 2026 Monaco Grand Prix</span>
+        <span class="standings__source-links">
+          <a href="https://www.formula1.com/en/results/2026/drivers" target="_blank" rel="noreferrer">车手数据源 · Drivers source</a>
+          <a href="https://www.formula1.com/en/results/2026/team" target="_blank" rel="noreferrer">车队数据源 · Constructors source</a>
+        </span>
+      </footer>
+    </section>
+
+    <script src="./standings.js"></script>
+    <script src="./podium.js"></script>
+    <script src="./standings-interact.js"></script>
+    <script src="./global-auth.js"></script>
+    <script src="./global-danmaku.js"></script>
+  </body>
+</html>

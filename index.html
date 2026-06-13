@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Paddock Club · F1社区评分与赛车展厅</title>
+    <meta
+      name="description"
+      content="Paddock Club 是面向 F1 车迷的社区评分、车手逐站评价、排行榜与 2026 赛车展厅。"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="hero" aria-label="Formula racing hero">
+      <div class="hero__atmosphere" aria-hidden="true"></div>
+      <img
+        class="hero__driver hero__driver--old-top"
+        src="./assets/hero-driver-top.png?v=2"
+        alt=""
+        aria-hidden="true"
+      />
+      <img
+        class="hero__driver hero__driver--old-bottom"
+        src="./assets/hero-driver-bottom.png?v=2"
+        alt=""
+        aria-hidden="true"
+      />
+      <img
+        class="hero__driver hero__driver--new-top"
+        src="./assets/hero-driver-new-top.png?v=2"
+        alt=""
+        aria-hidden="true"
+      />
+      <img
+        class="hero__driver hero__driver--new-bottom"
+        src="./assets/hero-driver-new-bottom.png?v=2"
+        alt=""
+        aria-hidden="true"
+      />
+      <section class="hero__content">
+        <h1>Paddock<br />Club.</h1>
+        <p class="hero__copy">属于我们自己的排名和讨论</p>
+        <p class="hero__sub">在这里你可以畅所欲言，发表你对新赛季各家车队推出的新车看法，推举你的主队和车手登上社区冠军</p>
+        <a class="hero__button" href="#race" id="hero-cta">进入展厅 · Explore</a>
+      </section>
+    </main>
+
+    <section class="podium" id="rankings" aria-labelledby="podium-title">
+      <div class="podium__danmaku" id="podium-danmaku" aria-hidden="true"></div>
+      <header class="podium__header">
+        <p class="podium__eyebrow">Community Leaderboard · 社区排行榜</p>
+        <h2 id="podium-title">社区排行榜</h2>
+        <p class="podium__intro">汽油决定排名 · Fuel decides the ranking. 为你支持的车手加油，推他登顶。</p>
+      </header>
+      <div class="podium__stage">
+        <!-- P2 — 亚军 左 -->
+        <div class="podium__spot podium__spot--2">
+          <div class="podium__avatar">
+            <span class="podium__placeholder">?</span>
+          </div>
+          <div class="podium__step podium__step--2">
+            <span class="podium__rank">2</span>
+          </div>
+          <div class="podium__info">
+            <span class="podium__name">虚位以待</span>
+            <span class="podium__fuel">0<span class="podium__fuel-unit"> 汽油</span></span>
+          </div>
+        </div>
+
+        <!-- P1 — 冠军 中 -->
+        <div class="podium__spot podium__spot--1">
+          <div class="podium__avatar podium__avatar--gold">
+            <span class="podium__placeholder">?</span>
+          </div>
+          <div class="podium__step podium__step--1">
+            <span class="podium__rank">1</span>
+          </div>
+          <div class="podium__info">
+            <span class="podium__name">虚位以待</span>
+            <span class="podium__fuel">0<span class="podium__fuel-unit"> 汽油</span></span>
+          </div>
+        </div>
+
+        <!-- P3 — 季军 右 -->
+        <div class="podium__spot podium__spot--3">
+          <div class="podium__avatar">
+            <span class="podium__placeholder">?</span>
+          </div>
+          <div class="podium__step podium__step--3">
+            <span class="podium__rank">3</span>
+          </div>
+          <div class="podium__info">
+            <span class="podium__name">虚位以待</span>
+            <span class="podium__fuel">0<span class="podium__fuel-unit"> 汽油</span></span>
+          </div>
+        </div>
+
+        <!-- P4 — 第四 中下 -->
+        <div class="podium__spot podium__spot--4">
+          <div class="podium__avatar">
+            <span class="podium__placeholder">?</span>
+          </div>
+          <div class="podium__step podium__step--4">
+            <span class="podium__rank">4</span>
+          </div>
+          <div class="podium__info">
+            <span class="podium__name">虚位以待</span>
+            <span class="podium__fuel">0<span class="podium__fuel-unit"> 汽油</span></span>
+          </div>
+        </div>
+      </div>
+      <a class="podium__more" href="./rankings.html">查看详情 →</a>
+    </section>
+
+    <section class="showroom" id="race" aria-labelledby="showroom-title">
+      <header class="showroom__header">
+        <div>
+          <p class="showroom__eyebrow">2026 Constructor Lineup · 2026制造商阵容</p>
+          <h2 id="showroom-title">十一台赛车 · Eleven machines.<br />同一赛道 · One grid.</h2>
+        </div>
+        <p class="showroom__intro">
+          从马拉内罗到银石，从底特律到科隆——十一支车队、六套动力单元、一个终极问题：谁能在F1史上最激进的技术革命中胜出？
+        </p>
+      </header>
+
+      <div class="vehicle-grid">
+        <a class="vehicle-card vehicle-card--ferrari" href="./sf26.html">
+          <div class="vehicle-card__image">
+            <img src="./assets/vehicle-sf26.jpg" alt="法拉利 SF-26 赛车侧面" />
+          </div>
+          <div class="vehicle-card__content">
+            <div>
+              <p>Scuderia Ferrari</p>
+              <h3>SF-26</h3>
+            </div>
+            <div class="vehicle-card__action">
+              <span>01 / 11</span>
+              <strong>查看详情 · View details</strong>
+            </div>
+          </div>
+        </a>
+
+        <a class="vehicle-card vehicle-card--mercedes" href="./w17.html">
+          <div class="vehicle-card__image">
+            <img src="./assets/vehicle-w17.jpg" alt="梅赛德斯 W17 赛车侧面" />
+          </div>
+          <div class="vehicle-card__content">
+            <div>
+              <p>Mercedes-AMG Petronas</p>
+              <h3>W17</h3>
+            </div>
+            <div class="vehicle-card__action">
+              <span>02 / 11</span>
+              <strong>查看详情 · View details</strong>
+            </div>
+          </div>
+        </a>
+
+        <a class="vehicle-card vehicle-card--redbull" href="./rb22.html">
+          <div class="vehicle-card__image">
+            <img src="./assets/vehicle-rb22.png" alt="红牛 RB22 赛车侧面" />
+          </div>
+          <div class="vehicle-card__content">
+            <div>
+              <p>Oracle Red Bull Racing</p>
+              <h3>RB22</h3>
+            </div>
+            <div class="vehicle-card__action">
+              <span>03 / 11</span>
+              <strong>查看详情 · View details</strong>
+            </div>
+          </div>
+        </a>
+
+        <a class="vehicle-card vehicle-card--alpine" href="./alpine-a526.html">
+          <div class="vehicle-card__image">
+            <img src="./assets/vehicle-alpine-a526.jpg" alt="Alpine A526 赛车侧面" />
+          </div>
+          <div class="vehicle-card__content">
+            <div>
+              <p>BWT Alpine F1 Team</p>
+              <h3>Alpine A526</h3>
+            </div>
+            <div class="vehicle-card__action">
+              <span>04 / 11</span>
+              <strong>查看详情 · View details</strong>
+            </div>
+          </div>
+        </a>
+
+        <a class="vehicle-card vehicle-card--racing-bulls" href="./vcarb03.html">
+          <div class="vehicle-card__image">
+            <img src="./assets/vehicle-vcarb03.jpg" alt="Racing Bulls VCARB03 赛车" />
+          </div>
+          <div class="vehicle-card__content">
+            <div>
+              <p>Racing Bulls</p>
+              <h3>VCARB03</h3>
+            </div>
+            <div class="vehicle-card__action">
+              <span>05 / 11</span>
+              <strong>查看详情 · View details</strong>
+            </div>
+          </div>
+        </a>
+
+        <a class="vehicle-card vehicle-card--cadillac" href="./cadillac-mac26.html">
+          <div class="vehicle-card__image">
+            <img src="./assets/vehicle-cadillac-mac26.jpg" alt="凯迪拉克 MAC-26 赛车" />
+          </div>
+          <div class="vehicle-card__content">
+            <div>
+              <p>Cadillac Formula 1 Team</p>
+              <h3>MAC-26</h3>
+            </div>
+            <div class="vehicle-card__action">
+              <span>06 / 11</span>
+              <strong>查看详情 · View details</strong>
+            </div>
+          </div>
+        </a>
+
+        <a class="vehicle-card vehicle-card--haas" href="./haas-vf26.html">
+          <div class="vehicle-card__image">
+            <img src="./assets/vehicle-haas-vf26.jpg" alt="哈斯 VF-26 赛车" />
+          </div>
+          <div class="vehicle-card__content">
+            <div>
+              <p>Haas F1 Team</p>
+              <h3>VF-26</h3>
+            </div>
+            <div class="vehicle-card__action">
+              <span>07 / 11</span>
+              <strong>查看详情 · View details</strong>
+            </div>
+          </div>
+        </a>
+
+        <a class="vehicle-card vehicle-card--audi" href="./audi-r26.html">
+          <div class="vehicle-card__image">
+            <img src="./assets/vehicle-audi-r26.jpg" alt="奥迪 R26 赛车" />
+          </div>
+          <div class="vehicle-card__content">
+            <div>
+              <p>Audi F1 Team</p>
+              <h3>R26</h3>
+            </div>
+            <div class="vehicle-card__action">
+              <span>08 / 11</span>
+              <strong>查看详情 · View details</strong>
+            </div>
+          </div>
+        </a>
+
+        <a class="vehicle-card vehicle-card--williams" href="./williams-fw48.html">
+          <div class="vehicle-card__image">
+            <img src="./assets/vehicle-williams-fw48.jpg" alt="威廉姆斯 FW48 赛车" />
+          </div>
+          <div class="vehicle-card__content">
+            <div>
+              <p>Williams Racing</p>
+              <h3>FW48</h3>
+            </div>
+            <div class="vehicle-card__action">
+              <span>09 / 11</span>
+              <strong>查看详情 · View details</strong>
+            </div>
+          </div>
+        </a>
+
+        <a class="vehicle-card vehicle-card--mclaren" href="./mclaren-mcl40.html">
+          <div class="vehicle-card__image">
+            <img src="./assets/vehicle-mclaren-mcl40.jpg" alt="迈凯轮 MCL40 赛车" />
+          </div>
+          <div class="vehicle-card__content">
+            <div>
+              <p>McLaren Formula 1 Team</p>
+              <h3>MCL40</h3>
+            </div>
+            <div class="vehicle-card__action">
+              <span>10 / 11</span>
+              <strong>查看详情 · View details</strong>
+            </div>
+          </div>
+        </a>
+
+        <a class="vehicle-card vehicle-card--aston" href="./aston-martin-amr26.html">
+          <div class="vehicle-card__image">
+            <img src="./assets/vehicle-aston-amr26.jpg" alt="阿斯顿·马丁 AMR26 赛车" />
+          </div>
+          <div class="vehicle-card__content">
+            <div>
+              <p>Aston Martin Aramco</p>
+              <h3>AMR26</h3>
+            </div>
+            <div class="vehicle-card__action">
+              <span>11 / 11</span>
+              <strong>查看详情 · View details</strong>
+            </div>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <script src="./standings.js"></script>
+    <script src="./home.js"></script>
+    <script src="./podium.js"></script>
+    <script src="./global-auth.js"></script>
+    <script src="./global-danmaku.js"></script>
+  </body>
+</html>

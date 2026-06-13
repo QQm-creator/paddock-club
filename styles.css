@@ -1,0 +1,1488 @@
+:root {
+  color-scheme: dark;
+  font-family:
+    Arial,
+    Helvetica,
+    sans-serif;
+  background: #020202;
+  color: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100dvh;
+  overflow-x: hidden;
+  background: #020202;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  align-items: center;
+  min-height: 100dvh;
+  overflow: hidden;
+  background: #020202;
+}
+
+.hero__atmosphere {
+  position: absolute;
+  inset: 0;
+  z-index: -3;
+  background:
+    linear-gradient(90deg, rgba(0, 0, 0, 0.86) 0%, rgba(0, 0, 0, 0.58) 42%, rgba(0, 0, 0, 0.2) 100%),
+    url("./assets/hero-atmosphere.jpg?v=2") center / cover no-repeat;
+  transform: scale(1.04);
+  animation: atmosphere-drift 8s ease-out both;
+}
+
+.hero::before,
+.hero::after {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  content: "";
+}
+
+.hero::before {
+  background:
+    radial-gradient(circle at 67% 25%, rgba(231, 186, 97, 0.16), transparent 20rem),
+    radial-gradient(circle at 72% 74%, rgba(221, 21, 24, 0.22), transparent 24rem),
+    radial-gradient(circle at 91% 24%, rgba(111, 72, 180, 0.18), transparent 20rem);
+  opacity: 0;
+  animation: glow-rise 1.4s 0.6s ease-out forwards;
+}
+
+.hero::after {
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.78), transparent 20%, transparent 72%, rgba(0, 0, 0, 0.86));
+}
+
+.hero__driver {
+  position: absolute;
+  z-index: -2;
+  width: min(42vw, 760px);
+  height: auto;
+  max-width: none;
+  user-select: none;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  -webkit-mask-image: radial-gradient(ellipse 84% 91% at 52% 48%, #000 70%, transparent 100%);
+  mask-image: radial-gradient(ellipse 84% 91% at 52% 48%, #000 70%, transparent 100%);
+  filter: saturate(1.08) contrast(1.06);
+  opacity: 0;
+  transform: translate3d(36vw, 0, 0);
+  will-change: transform, opacity, filter;
+}
+
+.hero__driver--old-top {
+  top: -1vh;
+  right: 23vw;
+  animation: driver-enter 1.05s 0.18s cubic-bezier(0.18, 0.85, 0.17, 1) forwards;
+}
+
+.hero__driver--old-bottom {
+  right: 19vw;
+  bottom: -10vh;
+  width: min(44vw, 820px);
+  animation: driver-enter 1.05s 1.3s cubic-bezier(0.18, 0.85, 0.17, 1) forwards;
+}
+
+.hero__driver--new-top {
+  top: 2vh;
+  right: -5vw;
+  width: min(42vw, 780px);
+  animation: driver-enter 1.05s 2.42s cubic-bezier(0.18, 0.85, 0.17, 1) forwards;
+}
+
+.hero__driver--new-bottom {
+  right: -7vw;
+  bottom: -8vh;
+  width: min(44vw, 830px);
+  animation: driver-enter 1.05s 3.54s cubic-bezier(0.18, 0.85, 0.17, 1) forwards;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  width: min(650px, calc(100% - 40px));
+  margin-left: clamp(20px, 7vw, 132px);
+  padding-block: 88px;
+}
+
+.hero__eyebrow {
+  margin: 0 0 24px;
+  color: #e54637;
+  font-size: clamp(0.75rem, 1.1vw, 0.95rem);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  max-width: 11ch;
+  margin: 0;
+  font-size: clamp(4rem, 8.7vw, 8rem);
+  font-weight: 900;
+  line-height: 0.86;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.hero__copy {
+  max-width: 34rem;
+  margin: 28px 0 0;
+  color: #c41e1e;
+  font-size: clamp(1rem, 1.4vw, 1.18rem);
+  line-height: 1.72;
+}
+
+.hero__sub {
+  max-width: 38rem;
+  margin: 16px 0 0;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: clamp(0.88rem, 1.05vw, 0.98rem);
+  line-height: 1.75;
+}
+
+.hero__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  margin-top: 36px;
+  padding: 0 22px;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+.hero__button:hover {
+  border-color: rgba(229, 70, 55, 0.8);
+  background: rgba(229, 70, 55, 0.18);
+  transform: translateY(-2px);
+}
+
+/* ── Podium / 社区排行榜 ── */
+
+.podium {
+  --podium-red: #e13a3f;
+  --podium-gold: #d9b45b;
+  --podium-silver: #aeb4bd;
+  --podium-bronze: #9b674b;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: clamp(88px, 10vw, 150px) clamp(20px, 5vw, 88px) clamp(84px, 9vw, 136px);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    radial-gradient(circle at 50% 50%, rgba(225, 58, 63, 0.09), transparent 34rem),
+    linear-gradient(180deg, #060607 0%, #0a0a0c 55%, #050506 100%);
+}
+
+.podium::before,
+.podium::after {
+  position: absolute;
+  z-index: -1;
+  content: "";
+  pointer-events: none;
+}
+
+.podium::before {
+  inset: 0;
+  opacity: 0.24;
+  background: repeating-linear-gradient(
+    116deg,
+    transparent 0 76px,
+    rgba(255, 255, 255, 0.035) 77px,
+    transparent 78px 154px
+  );
+  mask-image: linear-gradient(180deg, transparent, #000 25%, #000 80%, transparent);
+}
+
+.podium::after {
+  right: -12vw;
+  bottom: 12%;
+  width: 56vw;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(225, 58, 63, 0.6), transparent);
+  box-shadow: 0 18px 0 rgba(255, 255, 255, 0.04), 0 -18px 0 rgba(255, 255, 255, 0.04);
+  transform: rotate(-7deg);
+}
+
+.podium__header {
+  width: min(100%, 1240px);
+  margin: 0 auto clamp(64px, 7vw, 104px);
+  text-align: left;
+}
+
+.podium__eyebrow {
+  margin: 0 0 16px;
+  color: var(--podium-red);
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.podium h2 {
+  max-width: 10ch;
+  margin: 0;
+  font-size: clamp(3.2rem, 7vw, 7.7rem);
+  font-weight: 900;
+  line-height: 0.84;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+.podium__intro {
+  max-width: 32rem;
+  margin: 24px 0 0;
+  color: rgba(255, 255, 255, 0.54);
+  font-size: clamp(0.9rem, 1vw, 1.02rem);
+  line-height: 1.7;
+}
+
+/* ── Podium Danmaku ── */
+
+.podium__danmaku {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* ── Podium Stage ── */
+
+.podium__stage {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.18fr) minmax(0, 1fr);
+  grid-template-areas:
+    "second first third"
+    "fourth fourth fourth";
+  gap: 0 clamp(10px, 2.4vw, 34px);
+  align-items: end;
+  width: min(1080px, 100%);
+  margin: 0 auto;
+}
+
+.podium__spot {
+  --place-color: rgba(255, 255, 255, 0.4);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 0;
+  opacity: 0;
+  transform: translateY(160px);
+}
+
+.podium--visible .podium__spot {
+  animation-name: podium-rise;
+  animation-duration: 750ms;
+  animation-timing-function: cubic-bezier(0.16, 0.82, 0.18, 1);
+  animation-fill-mode: both;
+  cursor: pointer;
+}
+
+.podium__spot:hover {
+  filter: brightness(1.15);
+  transition: filter 200ms ease;
+}
+
+.podium__spot::before {
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  color: var(--place-color);
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transform: translateX(-50%);
+}
+
+.podium__spot--1 {
+  --place-color: var(--podium-gold);
+  grid-area: first;
+  animation-delay: 0ms;
+}
+
+.podium__spot--1::before {
+  content: none;
+}
+
+.podium__spot--2 {
+  --place-color: var(--podium-silver);
+  grid-area: second;
+  animation-delay: 140ms;
+}
+
+.podium__spot--2::before {
+  content: none;
+}
+
+.podium__spot--3 {
+  --place-color: var(--podium-bronze);
+  grid-area: third;
+  animation-delay: 280ms;
+}
+
+.podium__spot--3::before {
+  content: none;
+}
+
+.podium__spot--4 {
+  --place-color: #7f838b;
+  grid-area: fourth;
+  display: grid;
+  grid-template-columns: 68px 72px minmax(0, 1fr);
+  gap: 18px;
+  align-items: center;
+  width: min(620px, 100%);
+  margin: 34px auto 0;
+  padding: 14px 20px;
+  background: rgba(255, 255, 255, 0.035);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  animation-delay: 420ms;
+}
+
+.podium__spot--4::before {
+  top: 50%;
+  right: 18px;
+  left: auto;
+  color: rgba(255, 255, 255, 0.28);
+  content: none;
+  transform: translateY(-50%);
+}
+
+/* ── Avatar ── */
+
+.podium__avatar {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: clamp(74px, 9vw, 112px);
+  height: clamp(86px, 10.5vw, 130px);
+  place-items: center;
+  margin-bottom: 18px;
+  overflow: hidden;
+  background:
+    linear-gradient(145deg, color-mix(in srgb, var(--place-color) 18%, transparent), transparent 58%),
+    #111114;
+  border: 1px solid color-mix(in srgb, var(--place-color) 58%, transparent);
+  border-radius: 5px 5px 0 0;
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.3);
+}
+
+.podium__avatar::after {
+  position: absolute;
+  inset: auto 0 0;
+  height: 3px;
+  content: "";
+  background: var(--place-color);
+}
+
+.podium__avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.podium__avatar--gold {
+  width: clamp(92px, 11vw, 138px);
+  height: clamp(108px, 13vw, 158px);
+  box-shadow: 0 22px 48px rgba(0, 0, 0, 0.36), 0 0 38px rgba(217, 180, 91, 0.12);
+}
+
+.podium__placeholder {
+  font-size: clamp(1.7rem, 3vw, 2.7rem);
+  font-weight: 900;
+  color: color-mix(in srgb, var(--place-color) 50%, transparent);
+}
+
+/* ── Steps ── */
+
+.podium__step {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: clamp(24px, 3vw, 38px);
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03), transparent 50%),
+    linear-gradient(180deg, color-mix(in srgb, var(--place-color) 18%, #111114), #0c0c0e);
+  border: 1px solid color-mix(in srgb, var(--place-color) 42%, transparent);
+  border-bottom: 0;
+  border-radius: 3px 3px 0 0;
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.08), 0 -20px 50px rgba(0, 0, 0, 0.18);
+}
+
+.podium__step::before {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 5px;
+  content: "";
+  background: var(--place-color);
+}
+
+.podium__step--1 {
+  height: clamp(190px, 20vw, 270px);
+}
+
+.podium__step--2 {
+  height: clamp(142px, 15vw, 205px);
+}
+
+.podium__step--3 {
+  height: clamp(108px, 11vw, 158px);
+}
+
+.podium__step--4 {
+  grid-column: 1;
+  grid-row: 1;
+  width: 58px;
+  height: 58px;
+  padding: 0;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.podium__rank {
+  font-size: clamp(3.2rem, 7vw, 7rem);
+  font-weight: 900;
+  line-height: 0.8;
+  color: color-mix(in srgb, var(--place-color) 68%, transparent);
+  font-variant-numeric: tabular-nums;
+}
+
+.podium__step--1 .podium__rank {
+  color: var(--podium-gold);
+  font-size: clamp(4.4rem, 9vw, 9rem);
+}
+
+.podium__step--4 .podium__rank {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 1.35rem;
+}
+
+/* ── Info below step ── */
+
+.podium__info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  min-height: 54px;
+  margin: 0 0 18px;
+  text-align: center;
+}
+
+.podium__name {
+  max-width: 100%;
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: clamp(0.82rem, 1.1vw, 1rem);
+  font-weight: 800;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.podium__fuel {
+  color: var(--place-color);
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+}
+
+.podium__fuel-unit {
+  color: rgba(255, 255, 255, 0.42);
+  font-size: 0.62rem;
+  font-weight: 700;
+}
+
+.podium__spot--4 .podium__avatar {
+  grid-column: 2;
+  grid-row: 1;
+  width: 54px;
+  height: 54px;
+  margin: 0;
+  border-radius: 3px;
+  box-shadow: none;
+}
+
+.podium__spot--4 .podium__info {
+  grid-column: 3;
+  grid-row: 1;
+  align-items: flex-start;
+  min-height: 0;
+  margin: 0;
+  padding-right: 140px;
+  text-align: left;
+}
+
+/* ── Podium Detail Link ── */
+
+.podium__more {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  width: min(1080px, 100%);
+  margin: clamp(34px, 4vw, 52px) auto 0;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.74rem;
+  font-weight: 800;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 200ms ease, transform 200ms ease;
+}
+
+.podium__more:hover,
+.podium__more:focus-visible {
+  color: var(--podium-red);
+  transform: translateX(4px);
+}
+
+.podium__more:focus-visible {
+  outline: 2px solid var(--podium-red);
+  outline-offset: 6px;
+}
+
+@keyframes podium-rise {
+  from {
+    opacity: 0;
+    transform: translateY(160px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Podium Responsive ── */
+
+@media (max-width: 720px) {
+  .podium__header {
+    margin-bottom: 74px;
+  }
+
+  .podium__stage {
+    gap: 0 8px;
+  }
+
+  .podium__spot::before {
+    top: -18px;
+    font-size: 0.5rem;
+    white-space: nowrap;
+  }
+
+  .podium__avatar {
+    width: clamp(58px, 18vw, 76px);
+    height: clamp(68px, 21vw, 88px);
+    margin-bottom: 12px;
+  }
+
+  .podium__avatar--gold {
+    width: clamp(70px, 21vw, 90px);
+    height: clamp(82px, 25vw, 104px);
+  }
+
+  .podium__step--1 {
+    height: clamp(145px, 43vw, 184px);
+  }
+
+  .podium__step--2 {
+    height: clamp(108px, 32vw, 138px);
+  }
+
+  .podium__step--3 {
+    height: clamp(82px, 24vw, 106px);
+  }
+
+  .podium__rank {
+    font-size: clamp(2.6rem, 14vw, 4rem);
+  }
+
+  .podium__step--1 .podium__rank {
+    font-size: clamp(3.4rem, 18vw, 5rem);
+  }
+
+  .podium__info {
+    gap: 4px;
+    min-height: 46px;
+    margin-bottom: 12px;
+  }
+
+  .podium__name {
+    font-size: 0.68rem;
+  }
+
+  .podium__fuel {
+    font-size: 0.78rem;
+  }
+
+  .podium__fuel-unit {
+    display: none;
+  }
+
+  .podium__spot--4 {
+    grid-template-columns: 48px 52px minmax(0, 1fr);
+    gap: 10px;
+    margin-top: 22px;
+    padding: 10px 12px;
+  }
+
+  .podium__spot--4::before {
+    display: none;
+  }
+
+  .podium__step--4 {
+    width: 42px;
+    height: 42px;
+  }
+
+  .podium__spot--4 .podium__avatar {
+    width: 42px;
+    height: 42px;
+  }
+
+  .podium__spot--4 .podium__info {
+    padding-right: 0;
+  }
+
+  .podium__more {
+    justify-content: flex-start;
+  }
+}
+
+.showroom {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(88px, 10vw, 168px) clamp(20px, 5vw, 88px) clamp(96px, 11vw, 180px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background:
+    linear-gradient(180deg, #050505 0%, #0b0b0b 48%, #030303 100%);
+}
+
+.showroom::before {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: min(1100px, 82vw);
+  height: 1px;
+  content: "";
+  background: linear-gradient(90deg, transparent, rgba(229, 70, 55, 0.8), transparent);
+  transform: translateX(-50%);
+}
+
+.showroom__header {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.55fr);
+  gap: 48px;
+  align-items: end;
+  width: min(1540px, 100%);
+  margin: 0 auto clamp(60px, 7vw, 108px);
+}
+
+.showroom__eyebrow {
+  margin: 0 0 20px;
+  color: #e54637;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.showroom h2 {
+  margin: 0;
+  font-size: clamp(3rem, 6.2vw, 7.5rem);
+  font-weight: 900;
+  line-height: 0.88;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.showroom__intro {
+  max-width: 34rem;
+  margin: 0 0 4px;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: clamp(0.98rem, 1.15vw, 1.12rem);
+  line-height: 1.75;
+}
+
+.vehicle-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(12px, 1.5vw, 24px);
+  width: min(1660px, 100%);
+  margin: 0 auto;
+}
+
+.vehicle-card {
+  --card-accent: #ffffff;
+  --card-surface: #111111;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 6px;
+  color: #ffffff;
+  text-decoration: none;
+  background: var(--card-surface);
+  transition:
+    border-color 240ms ease,
+    transform 300ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    box-shadow 300ms ease;
+}
+
+.vehicle-card::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  border: 1px solid transparent;
+  border-radius: inherit;
+  transition: border-color 240ms ease;
+}
+
+.vehicle-card:hover,
+.vehicle-card:focus-visible {
+  border-color: color-mix(in srgb, var(--card-accent) 62%, white 8%);
+  outline: none;
+  box-shadow: 0 22px 56px rgba(0, 0, 0, 0.38);
+  transform: translateY(-6px);
+}
+
+.vehicle-card:hover::after,
+.vehicle-card:focus-visible::after {
+  border-color: color-mix(in srgb, var(--card-accent) 44%, transparent);
+}
+
+.vehicle-card--ferrari {
+  --card-accent: #ef3f43;
+  --card-surface: #3e050a;
+}
+
+.vehicle-card--mercedes {
+  --card-accent: #5edbd1;
+  --card-surface: #071a1b;
+}
+
+.vehicle-card--redbull {
+  --card-accent: #3c6fda;
+  --card-surface: #070b17;
+}
+
+.vehicle-card--alpine {
+  --card-accent: #ef78d6;
+  --card-surface: #24113a;
+}
+
+.vehicle-card--racing-bulls {
+  --card-accent: #b9a7f3;
+  --card-surface: #17162e;
+}
+
+.vehicle-card--cadillac {
+  --card-accent: #d7e2e8;
+  --card-surface: #172128;
+}
+
+.vehicle-card--haas {
+  --card-accent: #f15d59;
+  --card-surface: #401112;
+}
+
+.vehicle-card--audi {
+  --card-accent: #f23a30;
+  --card-surface: #260706;
+}
+
+.vehicle-card--williams {
+  --card-accent: #4aa8f4;
+  --card-surface: #071e3b;
+}
+
+.vehicle-card--mclaren {
+  --card-accent: #ff8a1f;
+  --card-surface: #3a1703;
+}
+
+.vehicle-card--aston {
+  --card-accent: #49c5a4;
+  --card-surface: #073027;
+}
+
+.vehicle-card__image {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: clamp(280px, 27vw, 450px);
+  overflow: hidden;
+  background: var(--card-surface);
+}
+
+.vehicle-card__image::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background: linear-gradient(180deg, transparent 58%, var(--card-surface) 100%);
+  pointer-events: none;
+}
+
+.vehicle-card__image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition:
+    transform 650ms cubic-bezier(0.2, 0.72, 0.2, 1),
+    filter 400ms ease;
+}
+
+.vehicle-card:hover .vehicle-card__image img,
+.vehicle-card:focus-visible .vehicle-card__image img {
+  filter: saturate(1.08) contrast(1.03);
+  transform: scale(1.035);
+}
+
+.vehicle-card__content {
+  position: relative;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  min-height: 136px;
+  gap: 24px;
+  padding: 24px clamp(20px, 2vw, 32px) 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.09);
+  background: var(--card-surface);
+}
+
+.vehicle-card__content p {
+  margin: 0 0 8px;
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.vehicle-card__content h3 {
+  margin: 0;
+  font-size: clamp(1.8rem, 2.7vw, 3.35rem);
+  line-height: 0.9;
+  letter-spacing: 0;
+}
+
+.vehicle-card__action {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
+  text-align: right;
+  text-transform: uppercase;
+}
+
+.vehicle-card__action span {
+  color: var(--card-accent);
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+.vehicle-card__action strong {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+}
+
+@keyframes driver-enter {
+  0% {
+    opacity: 0;
+    transform: translate3d(36vw, 0, 0);
+    filter: blur(12px) saturate(1.25) contrast(1.25);
+  }
+
+  45% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    filter: blur(0) saturate(1.08) contrast(1.06);
+  }
+}
+
+@keyframes atmosphere-drift {
+  from {
+    transform: translate3d(-2.4vw, 0, 0) scale(1.08);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0) scale(1.04);
+  }
+}
+
+@keyframes glow-rise {
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero {
+    align-items: end;
+  }
+
+  .hero__atmosphere {
+    background:
+      linear-gradient(180deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.52) 45%, rgba(0, 0, 0, 0.9) 100%),
+      url("./assets/hero-atmosphere.jpg?v=2") 67% center / cover no-repeat;
+  }
+
+  .hero__driver--old-top {
+    top: 1vh;
+    right: 18vw;
+    width: min(72vw, 600px);
+  }
+
+  .hero__driver--old-bottom {
+    right: 14vw;
+    bottom: 25vh;
+    width: min(76vw, 640px);
+  }
+
+  .hero__driver--new-top {
+    top: 4vh;
+    right: -30vw;
+    width: min(80vw, 660px);
+  }
+
+  .hero__driver--new-bottom {
+    right: -34vw;
+    bottom: 18vh;
+    width: min(84vw, 690px);
+  }
+
+  .hero__content {
+    width: min(calc(100% - 36px), 520px);
+    margin: 0 18px;
+    padding-block: 0 44px;
+  }
+
+  .hero h1 {
+    max-width: 10ch;
+    font-size: clamp(3.25rem, 18vw, 5.8rem);
+  }
+
+  .hero__copy {
+    max-width: 28rem;
+    margin-top: 20px;
+  }
+
+  .showroom__header {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .vehicle-grid {
+    grid-template-columns: 1fr;
+    width: min(680px, 100%);
+  }
+
+  .vehicle-card__image {
+    min-height: min(62vw, 430px);
+  }
+}
+
+@media (max-width: 520px) {
+  .hero h1 {
+    max-width: 100%;
+    font-size: clamp(3.1rem, 15vw, 4.5rem);
+    line-height: 0.9;
+  }
+
+  .hero__driver--old-top {
+    top: 5vh;
+    right: 14vw;
+    width: 78vw;
+  }
+
+  .hero__driver--old-bottom {
+    right: 10vw;
+    bottom: 31vh;
+    width: 82vw;
+  }
+
+  .hero__driver--new-top {
+    top: 7vh;
+    right: -38vw;
+    width: 88vw;
+  }
+
+  .hero__driver--new-bottom {
+    right: -42vw;
+    bottom: 24vh;
+    width: 92vw;
+  }
+
+  .hero__eyebrow {
+    margin-bottom: 18px;
+  }
+
+  .hero__copy {
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 0.98rem;
+  }
+
+  .vehicle-card__image {
+    min-height: 250px;
+  }
+
+  .vehicle-card__content {
+    min-height: 118px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__atmosphere,
+  .hero__driver,
+  .hero::before {
+    animation: none;
+  }
+
+  .hero__driver {
+    opacity: 1;
+    transform: none;
+    filter: saturate(1.08) contrast(1.06);
+  }
+
+  .vehicle-card,
+  .vehicle-card__image img {
+    transition: none;
+  }
+
+  .podium__spot {
+    animation: none;
+  }
+}
+
+/* Championship standings */
+.standings {
+  position: relative;
+  padding: clamp(72px, 9vw, 132px) clamp(20px, 5vw, 84px);
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.025), transparent 180px), #070708;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.standings::before {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  content: "";
+  background: linear-gradient(90deg, #ef1a2d 0 34%, #ff8700 34% 59%, #55d5c9 59% 82%, #2455ff 82%);
+}
+
+.standings__header,
+.standings__panel,
+.standings__source {
+  width: min(100%, 1440px);
+  margin-inline: auto;
+}
+
+.standings__header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 32px;
+  align-items: end;
+  margin-bottom: clamp(36px, 5vw, 68px);
+}
+
+.standings__eyebrow {
+  margin: 0 0 13px;
+  color: #ff4658;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.standings h2 {
+  max-width: 760px;
+  margin: 0;
+  color: #f5f5f3;
+  font-size: clamp(2.8rem, 6vw, 6.5rem);
+  font-weight: 900;
+  line-height: 0.88;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.standings__controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-width: 310px;
+  padding: 4px;
+  background: #111114;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+}
+
+.standings__tab {
+  min-height: 44px;
+  padding: 0 18px;
+  color: #8f8f96;
+  font: inherit;
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  border-radius: 3px;
+  transition: color 180ms ease, background-color 180ms ease;
+}
+
+.standings__tab:hover,
+.standings__tab:focus-visible {
+  color: #fff;
+}
+
+.standings__tab:focus-visible {
+  outline: 2px solid #ff4658;
+  outline-offset: 2px;
+}
+
+.standings__tab.is-active {
+  color: #09090a;
+  background: #f4f4f1;
+}
+
+.standings__panel[hidden] {
+  display: none;
+}
+
+.standings__columns,
+.ranking-row {
+  display: grid;
+  grid-template-columns: 64px 78px minmax(0, 1fr) auto auto;
+  gap: clamp(12px, 2.2vw, 34px);
+  align-items: center;
+}
+
+.standings__columns {
+  padding: 0 clamp(10px, 2vw, 28px) 12px;
+  color: #606067;
+  font-size: 0.64rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.standings__columns span:nth-child(2) {
+  grid-column: 2 / 4;
+}
+
+.standings__columns span:last-child {
+  text-align: right;
+}
+
+.ranking-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.ranking-row {
+  --team: #f4f4f1;
+  min-height: 108px;
+  padding: 10px clamp(10px, 2vw, 28px);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  transition: background-color 180ms ease;
+}
+
+.ranking-row:hover {
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.ranking-row__position {
+  color: #696970;
+  font-size: clamp(1.2rem, 2vw, 1.75rem);
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+}
+
+.ranking-row:nth-child(-n + 3) .ranking-row__position {
+  color: #f3f3f0;
+}
+
+.ranking-row__badge {
+  position: relative;
+  display: grid;
+  width: 76px;
+  height: 88px;
+  place-items: center;
+}
+
+.ranking-row__badge img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.ranking-row__badge--driver {
+  align-self: end;
+  overflow: hidden;
+  background: linear-gradient(180deg, transparent 12%, color-mix(in srgb, var(--team) 16%, transparent));
+  border-bottom: 2px solid var(--team);
+}
+
+.ranking-row__badge--driver img {
+  width: 82px;
+  height: 82px;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+.ranking-row__badge--team img {
+  width: 66px;
+  height: 66px;
+  object-fit: contain;
+}
+
+.ranking-row__identity {
+  min-width: 0;
+}
+
+.ranking-row__identity strong {
+  display: block;
+  overflow: hidden;
+  color: #f4f4f2;
+  font-size: clamp(1rem, 2vw, 1.55rem);
+  font-weight: 850;
+  line-height: 1.08;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ranking-row__identity small {
+  display: block;
+  margin-top: 7px;
+  overflow: hidden;
+  color: var(--team);
+  font-size: 0.72rem;
+  font-weight: 800;
+  line-height: 1.1;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.ranking-row__points {
+  min-width: 72px;
+  color: #f4f4f1;
+  font-size: clamp(1.7rem, 3.4vw, 3.1rem);
+  font-weight: 900;
+  line-height: 1;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.ranking-row__points::after {
+  display: block;
+  margin-top: 5px;
+  color: #65656b;
+  font-size: 0.58rem;
+  font-weight: 800;
+  content: "PTS · 积分";
+}
+
+.standings__source {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 24px;
+  color: #707076;
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.standings__source a {
+  color: #bdbdc2;
+  text-decoration: none;
+  border-bottom: 1px solid #5b5b60;
+}
+
+.standings__source a:hover,
+.standings__source a:focus-visible {
+  color: #fff;
+}
+
+.standings__source-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+}
+
+.team-mercedes { --team: #55d5c9; }
+.team-ferrari { --team: #f62b3c; }
+.team-mclaren { --team: #ff8700; }
+.team-redbull { --team: #4e6cff; }
+.team-racing-bulls { --team: #a7b6ff; }
+.team-alpine { --team: #ff69b4; }
+.team-haas { --team: #e5e5e5; }
+.team-williams { --team: #3e8cff; }
+.team-audi { --team: #ee2638; }
+.team-aston { --team: #36a78d; }
+.team-cadillac { --team: #babac1; }
+
+@media (max-width: 760px) {
+  .standings {
+    padding-inline: 16px;
+  }
+
+  .standings__header {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .standings__controls {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .standings__columns,
+  .ranking-row {
+    grid-template-columns: 30px 56px minmax(0, 1fr) auto;
+    gap: 10px;
+  }
+
+  .standings__columns {
+    padding-inline: 4px;
+  }
+
+  .ranking-row {
+    min-height: 84px;
+    padding: 7px 4px;
+  }
+
+  .ranking-row__badge {
+    width: 54px;
+    height: 68px;
+  }
+
+  .ranking-row__badge--driver img {
+    width: 62px;
+    height: 62px;
+  }
+
+  .ranking-row__badge--team img {
+    width: 48px;
+    height: 48px;
+  }
+
+  .ranking-row__identity strong {
+    font-size: 0.94rem;
+  }
+
+  .ranking-row__identity small {
+    margin-top: 5px;
+    font-size: 0.6rem;
+  }
+
+  .ranking-row__points {
+    min-width: 48px;
+    font-size: 1.55rem;
+  }
+
+  .standings__source {
+    display: block;
+  }
+
+  .standings__source a {
+    display: inline-block;
+    margin-top: 10px;
+  }
+
+  .standings__source-links {
+    display: flex;
+  }
+}
+
+/* ── Star Rating & Comments ── */
+
+.ranking-row {
+  position: relative;
+}
+
+.ranking-row__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.ranking-row__stars {
+  display: inline-flex;
+  gap: 2px;
+  white-space: nowrap;
+}
+
+.ranking-row__star {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.18);
+  cursor: pointer;
+  transition: color 140ms ease, transform 120ms ease;
+  line-height: 1;
+}
+
+.ranking-row__star:hover {
+  transform: scale(1.25);
+}
+
+.ranking-row__star.is-lit {
+  color: #f0a028;
+}
+
+.ranking-row__star.is-lit:hover {
+  color: #f5c252;
+}

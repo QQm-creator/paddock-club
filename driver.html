@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>车手详情 — Paddock Club</title>
+    <meta name="description" content="查看车手或车队资料，并为车手在 2026 赛季各条赛道的表现评分。" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./vehicle-detail.css" />
+    <link rel="stylesheet" href="./driver.css" />
+  </head>
+  <body>
+    <nav class="detail__nav">
+      <a class="detail__back" href="./rankings.html">← Back to rankings</a>
+      <span class="detail__season">2026赛季 · Season 2026</span>
+    </nav>
+
+    <main class="driver-page" id="driver-page">
+      <section class="driver-hero" id="driver-hero-section">
+        <div class="driver-hero__danmaku" id="driver-danmaku-container" aria-hidden="true"></div>
+        <div class="driver-hero__avatar">
+          <img id="driver-image" src="" alt="" />
+        </div>
+        <div class="driver-hero__info">
+          <p class="driver-hero__team" id="driver-team"></p>
+          <h1 id="driver-name"></h1>
+          <div class="driver-hero__meta">
+            <span class="driver-hero__position" id="driver-position"></span>
+            <span class="driver-hero__points" id="driver-points"></span>
+          </div>
+          <div class="driver-hero__rating" id="driver-rating-container">
+            <span class="driver-hero__stars" id="driver-stars-display"></span>
+            <span class="driver-hero__rating-text" id="driver-rating-text"></span>
+          </div>
+          <div class="driver-hero__user-stars" id="driver-user-stars">
+            <span class="driver-hero__stars-label">你的评分</span>
+            <span id="driver-interactive-stars"></span>
+          </div>
+        </div>
+</section>
+
+      <section class="circuit-ratings" id="circuit-ratings" aria-labelledby="circuit-ratings-title" hidden>
+        <header class="circuit-ratings__header">
+          <div>
+            <p class="circuit-ratings__eyebrow">2026 Performance Review</p>
+            <h2 id="circuit-ratings-title">逐站表现评分</h2>
+            <p class="circuit-ratings__intro">根据每一站的比赛表现给出 10 分制评分与五星评价，所有社区评分将汇总为车手赛季总评。</p>
+          </div>
+          <div class="season-score" aria-label="车手赛季总评">
+            <div class="season-score__number"><strong id="season-score-value">0.0</strong><span>/10</span></div>
+            <div class="season-score__stars" id="season-stars-display" aria-label="综合星级">☆☆☆☆☆</div>
+            <p id="season-score-meta">暂无逐站评分</p>
+          </div>
+        </header>
+        <div class="circuit-ratings__legend">
+          <span><i class="circuit-ratings__status-dot"></i> 已结束，可评分</span>
+          <span><i class="circuit-ratings__status-dot is-locked"></i> 尚未比赛</span>
+        </div>
+        <div class="circuit-grid" id="circuit-grid" aria-live="polite"></div>
+      </section>
+
+    </main>
+
+    <script src="./driver.js"></script>
+    <script src="./global-auth.js"></script>
+    <script src="./global-danmaku.js"></script>
+</body>
+</html>

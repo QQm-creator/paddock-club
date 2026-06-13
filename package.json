@@ -1,0 +1,20 @@
+{
+  "name": "paddock-club",
+  "version": "1.0.0",
+  "description": "F1 Paddock Club — community rankings, ratings & comments",
+  "main": "server.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "build": "node scripts/build-pages.mjs"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "express": "^4.21.0",
+    "express-rate-limit": "^8.5.2",
+    "helmet": "^8.2.0"
+  }
+}
