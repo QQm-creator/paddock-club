@@ -61,6 +61,16 @@ https://你的域名.pages.dev/api/health
 
 然后测试注册、登录、评论和车手逐站评分。
 
+## GitHub Actions 自动部署
+
+仓库包含 `.github/workflows/deploy-pages.yml`。在 GitHub 仓库的
+**Settings → Secrets and variables → Actions** 中添加：
+
+- `CLOUDFLARE_API_TOKEN`
+- `CLOUDFLARE_ACCOUNT_ID`
+
+之后每次推送 `main` 都会自动构建并部署到 Cloudflare Pages。
+
 ## 公开仓库安全
 
 以下内容已被 `.gitignore` 排除：
