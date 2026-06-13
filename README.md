@@ -40,16 +40,10 @@ npm start
 | Root directory | 留空 |
 | Node.js version | 20 或更高 |
 
-### 3. 绑定 D1
+### 3. D1 绑定
 
-首次部署后：
-
-1. 进入 Pages 项目 **Settings → Bindings**。
-2. 添加 **D1 database binding**。
-3. Variable name 必须填写 `DB`。
-4. 选择刚创建的 `paddock-club-db`。
-5. Production 和 Preview 环境都添加该绑定。
-6. 重新部署一次。
+仓库中的 `wrangler.jsonc` 已将 Pages Functions 的 `DB` 绑定连接到
+`paddock-club-db`，部署时会作为项目配置的唯一来源，无需在控制台重复添加。
 
 ### 4. 验证
 
