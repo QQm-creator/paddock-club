@@ -3,9 +3,6 @@
   "name": "paddock-club",
   "pages_build_output_dir": "./dist",
   "compatibility_date": "2026-06-13",
-  "vars": {
-    "ADMIN_USERNAME": "汉密尔顿"
-  },
   "d1_databases": [
     {
       "binding": "DB",
