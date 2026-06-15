@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>管理后台 | Paddock Club</title>
+    <meta name="description" content="Paddock Club 站点运营管理后台。" />
+    <link rel="stylesheet" href="./admin.css" />
+  </head>
+  <body>
+    <header class="admin-nav">
+      <a class="admin-nav__brand" href="./index.html">
+        <span class="admin-nav__mark">PC</span>
+        <span>Paddock Club</span>
+      </a>
+      <div class="admin-nav__actions">
+        <span class="admin-nav__status" id="admin-sync-status">正在连接数据</span>
+        <button class="admin-button admin-button--quiet" id="admin-refresh" type="button">刷新</button>
+        <a class="admin-button" href="./index.html">返回网站</a>
+      </div>
+    </header>
+
+    <main class="admin-shell">
+      <section class="admin-heading">
+        <div>
+          <p class="admin-heading__eyebrow">Operations control</p>
+          <h1>管理后台</h1>
+          <p>查看社区用户、活跃情况、访问趋势和最新留言。</p>
+        </div>
+        <div class="admin-heading__operator">
+          <span>当前管理员</span>
+          <strong id="admin-operator">待验证</strong>
+        </div>
+      </section>
+
+      <section class="admin-state" id="admin-state" aria-live="polite">
+        <div class="admin-state__line"></div>
+        <strong>正在验证管理员权限</strong>
+        <span>数据准备完成后会自动显示。</span>
+      </section>
+
+      <div class="admin-dashboard" id="admin-dashboard" hidden>
+        <section class="admin-metrics" aria-label="核心数据">
+          <article class="admin-metric admin-metric--primary">
+            <span>注册用户</span>
+            <strong id="metric-users">0</strong>
+            <small>全部已注册账号</small>
+          </article>
+          <article class="admin-metric">
+            <span>24 小时活跃</span>
+            <strong id="metric-active-day">0</strong>
+            <small>近期登录或互动用户</small>
+          </article>
+          <article class="admin-metric">
+            <span>7 天活跃</span>
+            <strong id="metric-active-week">0</strong>
+            <small>过去一周活跃用户</small>
+          </article>
+          <article class="admin-metric">
+            <span>30 天访问</span>
+            <strong id="metric-views">0</strong>
+            <small><b id="metric-visitors">0</b> 位独立访客</small>
+          </article>
+        </section>
+
+        <section class="admin-section admin-trend">
+          <header class="admin-section__header">
+            <div>
+              <span>Traffic trend</span>
+              <h2>最近 14 天访问趋势</h2>
+            </div>
+            <div class="admin-legend" aria-label="图表图例">
+              <span><i class="admin-legend__line"></i>访问次数</span>
+              <span><i class="admin-legend__bar"></i>独立访客</span>
+            </div>
+          </header>
+          <div class="admin-chart" id="admin-chart" role="img" aria-label="最近十四天访问趋势图"></div>
+        </section>
+
+        <div class="admin-columns">
+          <section class="admin-section">
+            <header class="admin-section__header">
+              <div>
+                <span>Members</span>
+                <h2>最近注册用户</h2>
+              </div>
+              <strong class="admin-section__count" id="users-count">0</strong>
+            </header>
+            <div class="admin-list" id="admin-users"></div>
+          </section>
+
+          <section class="admin-section">
+            <header class="admin-section__header">
+              <div>
+                <span>Community messages</span>
+                <h2>用户留言</h2>
+              </div>
+              <strong class="admin-section__count" id="comments-count">0</strong>
+            </header>
+            <div class="admin-list admin-list--comments" id="admin-comments"></div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <script src="./global-auth.js"></script>
+    <script src="./admin.js"></script>
+  </body>
+</html>

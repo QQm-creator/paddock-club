@@ -54,3 +54,24 @@ CREATE TABLE IF NOT EXISTS comments (
 
 CREATE INDEX IF NOT EXISTS comments_entity_idx
   ON comments(entity_id, created_at DESC);
+
+CREATE TABLE IF NOT EXISTS user_activity (
+  user_id TEXT PRIMARY KEY,
+  last_seen_at TEXT NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE INDEX IF NOT EXISTS user_activity_last_seen_idx
+  ON user_activity(last_seen_at DESC);
+
+CREATE TABLE IF NOT EXISTS daily_page_views (
+  view_date TEXT NOT NULL,
+  visitor_id TEXT NOT NULL,
+  path TEXT NOT NULL,
+  view_count INTEGER NOT NULL DEFAULT 1,
+  last_viewed_at TEXT NOT NULL,
+  PRIMARY KEY (view_date, visitor_id, path)
+);
+
+CREATE INDEX IF NOT EXISTS daily_page_views_date_idx
+  ON daily_page_views(view_date DESC);
