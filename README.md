@@ -61,6 +61,25 @@ https://你的域名.pages.dev/api/health
 
 然后测试注册、登录、评论和车手逐站评分。
 
+## 管理后台
+
+管理后台地址：
+
+```text
+https://你的域名.pages.dev/admin
+```
+
+后台显示注册人数、24 小时和 7 天活跃用户、14 天访问趋势、最近用户和留言。
+访问统计从部署 `analytics.js` 后开始累计，不会补录此前的历史访问。
+
+管理员账号通过 Cloudflare Pages 加密环境变量配置：
+
+```bash
+npx wrangler pages secret put ADMIN_USERNAME --project-name paddock-club
+```
+
+变量值填写允许进入后台的现有用户名。多个管理员可使用英文逗号分隔。
+
 ## GitHub Actions 自动部署
 
 仓库包含 `.github/workflows/deploy-pages.yml`。在 GitHub 仓库的
