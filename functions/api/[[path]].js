@@ -96,15 +96,6 @@ async function currentUser(request, db) {
   return user;
 }
 
-function isAdmin(user, env) {
-  if (!user || !env.ADMIN_USERNAME) return false;
-  const allowed = String(env.ADMIN_USERNAME)
-    .split(',')
-    .map(value => value.trim().toLocaleLowerCase())
-    .filter(Boolean);
-  return allowed.includes(user.username.toLocaleLowerCase());
-}
-
 async function createSession(db, userId) {
   const tokenBytes = crypto.getRandomValues(new Uint8Array(32));
   const token = hex(tokenBytes);
@@ -407,7 +398,6 @@ async function handleTrackVisit(request, db) {
   }
 
   const now = new Date().toISOString();
-  const viewDate = now.slice(0, 10);
   await db.prepare(`
     INSERT INTO daily_page_views (view_date, visitor_id, path, view_count, last_viewed_at)
     VALUES (?, ?, ?, 1, ?)
@@ -415,105 +405,11 @@ async function handleTrackVisit(request, db) {
     DO UPDATE SET
       view_count = daily_page_views.view_count + 1,
       last_viewed_at = excluded.last_viewed_at
-  `).bind(viewDate, visitorId, path, now).run();
+  `).bind(now.slice(0, 10), visitorId, path, now).run();
 
   return new Response(null, {
     status: 204,
     headers: { 'Cache-Control': 'no-store' },
-  });
-}
-
-async function handleAdminOverview(request, env) {
-  const user = await currentUser(request, env.DB);
-  if (!user) return json({ error: '请先登录管理员账号' }, 401);
-  if (!isAdmin(user, env)) return json({ error: '当前账号没有管理员权限' }, 403);
-
-  const now = new Date();
-  const oneDayAgo = new Date(now.getTime() - 24 * 60 * 60 * 1000).toISOString();
-  const sevenDaysAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000).toISOString();
-  const thirtyDaysAgo = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
-  const trendStart = new Date(now.getTime() - 13 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
-
-  const [
-    registered,
-    activeDay,
-    activeWeek,
-    visitTotals,
-    trendResult,
-    commentsResult,
-    usersResult,
-  ] = await Promise.all([
-    env.DB.prepare('SELECT COUNT(*) AS total FROM users').first(),
-    env.DB.prepare('SELECT COUNT(*) AS total FROM user_activity WHERE last_seen_at >= ?')
-      .bind(oneDayAgo).first(),
-    env.DB.prepare('SELECT COUNT(*) AS total FROM user_activity WHERE last_seen_at >= ?')
-      .bind(sevenDaysAgo).first(),
-    env.DB.prepare(`
-      SELECT COALESCE(SUM(view_count), 0) AS views,
-             COUNT(DISTINCT visitor_id) AS visitors
-      FROM daily_page_views
-      WHERE view_date >= ?
-    `).bind(thirtyDaysAgo).first(),
-    env.DB.prepare(`
-      SELECT view_date AS date,
-             SUM(view_count) AS views,
-             COUNT(DISTINCT visitor_id) AS visitors
-      FROM daily_page_views
-      WHERE view_date >= ?
-      GROUP BY view_date
-      ORDER BY view_date ASC
-    `).bind(trendStart).all(),
-    env.DB.prepare(`
-      SELECT id, entity_id AS entityId, username, text, created_at AS createdAt
-      FROM comments
-      ORDER BY created_at DESC
-      LIMIT 50
-    `).all(),
-    env.DB.prepare(`
-      SELECT users.id, users.username, users.created_at AS createdAt,
-             user_activity.last_seen_at AS lastSeenAt
-      FROM users
-      LEFT JOIN user_activity ON user_activity.user_id = users.id
-      ORDER BY users.created_at DESC
-      LIMIT 30
-    `).all(),
-  ]);
-
-  const trendByDate = new Map((trendResult.results || []).map(row => [row.date, row]));
-  const trend = Array.from({ length: 14 }, (_, index) => {
-    const date = new Date(now.getTime() - (13 - index) * 24 * 60 * 60 * 1000)
-      .toISOString().slice(0, 10);
-    const row = trendByDate.get(date);
-    return {
-      date,
-      views: Number(row?.views || 0),
-      visitors: Number(row?.visitors || 0),
-    };
-  });
-
-  const comments = (commentsResult.results || []).map(comment => {
-    const entity = findEntity(comment.entityId);
-    return {
-      ...comment,
-      entityName: entity?.nameCN || entity?.name || comment.entityId,
-      entityType: DRIVERS.some(driver => driver.id === comment.entityId) ? '车手' : '车队',
-    };
-  });
-
-  return json({
-    admin: { id: user.id, username: user.username },
-    generatedAt: now.toISOString(),
-    metrics: {
-      registeredUsers: Number(registered?.total || 0),
-      active24h: Number(activeDay?.total || 0),
-      active7d: Number(activeWeek?.total || 0),
-      views30d: Number(visitTotals?.views || 0),
-      visitors30d: Number(visitTotals?.visitors || 0),
-      comments: comments.length,
-    },
-    trend,
-    comments,
-    users: usersResult.results || [],
   });
 }
 
@@ -540,13 +436,10 @@ export async function onRequest(context) {
     }
     if (method === 'GET' && segments[0] === 'me' && segments.length === 1) {
       const user = await currentUser(request, env.DB);
-      return user ? json({ ...user, isAdmin: isAdmin(user, env) }) : json({ error: '未登录' }, 401);
+      return user ? json(user) : json({ error: '未登录' }, 401);
     }
     if (method === 'POST' && segments[0] === 'analytics' && segments[1] === 'visit' && segments.length === 2) {
       return handleTrackVisit(request, env.DB);
-    }
-    if (method === 'GET' && segments[0] === 'admin' && segments[1] === 'overview' && segments.length === 2) {
-      return handleAdminOverview(request, env);
     }
     if (method === 'GET' && ['drivers', 'teams'].includes(segments[0]) && segments.length === 2) {
       return handleEntity(env.DB, segments[0], segments[1]);

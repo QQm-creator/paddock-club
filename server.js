@@ -8,6 +8,7 @@ const path = require('path');
 const fs = require('fs');
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
+const { execFile } = require('child_process');
 const helmet = require('helmet');
 const { rateLimit } = require('express-rate-limit');
 
@@ -249,6 +250,43 @@ function entityExists(id) {
   return DRIVERS.some(driver => driver.id === id) || TEAMS.some(team => team.id === id);
 }
 
+function isLocalRequest(req) {
+  const address = req.socket.remoteAddress || '';
+  return address === '127.0.0.1' || address === '::1' || address === '::ffff:127.0.0.1';
+}
+
+function queryRemoteDashboard(callback) {
+  const now = new Date();
+  const dayAgo = new Date(now.getTime() - 24 * 60 * 60 * 1000).toISOString();
+  const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000).toISOString();
+  const monthStart = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
+  const trendStart = new Date(now.getTime() - 13 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10);
+  const command = [
+    'SELECT COUNT(*) AS total FROM users',
+    `SELECT COUNT(*) AS total FROM user_activity WHERE last_seen_at >= '${dayAgo}'`,
+    `SELECT COUNT(*) AS total FROM user_activity WHERE last_seen_at >= '${weekAgo}'`,
+    `SELECT COALESCE(SUM(view_count), 0) AS views, COUNT(DISTINCT visitor_id) AS visitors FROM daily_page_views WHERE view_date >= '${monthStart}'`,
+    `SELECT view_date AS date, SUM(view_count) AS views, COUNT(DISTINCT visitor_id) AS visitors FROM daily_page_views WHERE view_date >= '${trendStart}' GROUP BY view_date ORDER BY view_date ASC`,
+    'SELECT id, entity_id AS entityId, username, text, created_at AS createdAt FROM comments ORDER BY created_at DESC LIMIT 50',
+    'SELECT users.id, users.username, users.created_at AS createdAt, user_activity.last_seen_at AS lastSeenAt FROM users LEFT JOIN user_activity ON user_activity.user_id = users.id ORDER BY users.created_at DESC LIMIT 30',
+  ].join('; ');
+
+  execFile(
+    path.join(__dirname, 'node_modules', '.bin', 'wrangler'),
+    ['d1', 'execute', 'paddock-club-db', '--remote', '--json', '--command', command],
+    { cwd: __dirname, timeout: 30000, maxBuffer: 2 * 1024 * 1024 },
+    (error, stdout) => {
+      if (error) return callback(error);
+      try {
+        const results = JSON.parse(stdout);
+        callback(null, results.map(item => item.results || []));
+      } catch (parseError) {
+        callback(parseError);
+      }
+    },
+  );
+}
+
 // ── Auth Routes ──
 
 // POST /api/register
@@ -321,6 +359,55 @@ app.post('/api/logout', (req, res) => {
 
 app.get('/api/health', (_req, res) => {
   res.json({ status: 'ok' });
+});
+
+app.get('/api/admin/overview', (req, res) => {
+  if (!isLocalRequest(req)) return res.status(404).json({ error: 'Not found' });
+
+  queryRemoteDashboard((error, rows) => {
+    if (error) {
+      console.error(error);
+      return res.status(503).json({ error: '无法读取线上数据，请确认网络和 Cloudflare 登录状态' });
+    }
+
+    const now = new Date();
+    const trendRows = rows[4] || [];
+    const trendByDate = new Map(trendRows.map(row => [row.date, row]));
+    const trend = Array.from({ length: 14 }, (_, index) => {
+      const date = new Date(now.getTime() - (13 - index) * 24 * 60 * 60 * 1000)
+        .toISOString().slice(0, 10);
+      const row = trendByDate.get(date);
+      return {
+        date,
+        views: Number(row?.views || 0),
+        visitors: Number(row?.visitors || 0),
+      };
+    });
+
+    const comments = (rows[5] || []).map(comment => {
+      const entity = DRIVERS.find(item => item.id === comment.entityId) ||
+        TEAMS.find(item => item.id === comment.entityId);
+      return {
+        ...comment,
+        entityName: entity?.nameCN || entity?.name || comment.entityId,
+        entityType: DRIVERS.some(driver => driver.id === comment.entityId) ? '车手' : '车队',
+      };
+    });
+
+    res.json({
+      generatedAt: now.toISOString(),
+      metrics: {
+        registeredUsers: Number(rows[0]?.[0]?.total || 0),
+        active24h: Number(rows[1]?.[0]?.total || 0),
+        active7d: Number(rows[2]?.[0]?.total || 0),
+        views30d: Number(rows[3]?.[0]?.views || 0),
+        visitors30d: Number(rows[3]?.[0]?.visitors || 0),
+      },
+      trend,
+      comments,
+      users: rows[6] || [],
+    });
+  });
 });
 
 // ── API Routes ──

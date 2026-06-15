@@ -4,6 +4,7 @@ import path from 'node:path';
 const root = process.cwd();
 const output = path.join(root, 'dist');
 const allowedExtensions = new Set(['.html', '.css', '.js']);
+const localOnlyFiles = new Set(['admin.html', 'admin.css', 'admin.js']);
 
 await rm(output, { recursive: true, force: true });
 await mkdir(output, { recursive: true });
@@ -11,7 +12,7 @@ await mkdir(output, { recursive: true });
 const entries = await readdir(root, { withFileTypes: true });
 for (const entry of entries) {
   if (!entry.isFile() || !allowedExtensions.has(path.extname(entry.name))) continue;
-  if (entry.name === 'server.js') continue;
+  if (entry.name === 'server.js' || localOnlyFiles.has(entry.name)) continue;
   const source = path.join(root, entry.name);
   const destination = path.join(output, entry.name);
   if (path.extname(entry.name) === '.html') {

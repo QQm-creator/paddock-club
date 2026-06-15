@@ -140,7 +140,6 @@
   }
 
   function render(data) {
-    document.getElementById('admin-operator').textContent = data.admin.username;
     document.getElementById('metric-users').textContent = formatNumber(data.metrics.registeredUsers);
     document.getElementById('metric-active-day').textContent = formatNumber(data.metrics.active24h);
     document.getElementById('metric-active-week').textContent = formatNumber(data.metrics.active7d);
@@ -155,22 +154,10 @@
   }
 
   async function requestOverview() {
-    var token = window.PaddockAuth.getToken();
-    if (!token) {
-      var user = await window.PaddockAuth.requireLogin();
-      if (!user) {
-        setState('需要管理员登录', '登录管理员账号后才能查看运营数据。', true);
-        return;
-      }
-      token = window.PaddockAuth.getToken();
-    }
-
     syncStatus.textContent = '正在更新数据';
     refreshButton.disabled = true;
     try {
-      var response = await fetch('/api/admin/overview', {
-        headers: { Authorization: 'Bearer ' + token },
-      });
+      var response = await fetch('/api/admin/overview');
       var body = await response.json();
       if (!response.ok) throw new Error(body.error || '后台数据加载失败');
       render(body);
